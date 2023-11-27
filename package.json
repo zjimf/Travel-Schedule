@@ -10,6 +10,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.6.2",
     "firebase": "^10.6.0",
     "markdown-to-jsx": "^7.3.2",
     "material-ui-search-bar": "^1.0.1",
