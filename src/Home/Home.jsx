@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useEffect, useState } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
@@ -8,12 +8,22 @@ import News from "./Header/News.jsx";
 import NodeBuild from "./Header/NodeBuild.jsx";
 import PostContainer from "./Content/PostContainer.jsx";
 import ToolBox from "./Content/ToolBox.jsx";
-
+import { CheckUserIsLogin } from "../Public/Methods/CheckUserIsLogin.js";
 const Home = () => {
+  const [userIsLogIn, setUserIsLogIn] = useState(false);
+
+  useEffect(() => {
+    const fetchUserIsLogin = async () => {
+      const isUserLoggedIn = await CheckUserIsLogin();
+      setUserIsLogIn(isUserLoggedIn);
+    };
+    fetchUserIsLogin();
+  }, []);
+
   return (
     <main style={{ backgroundColor: "#f3f4f9" }}>
       <CssBaseline />
-      <Header title="Travel Schedule" />
+      <Header userIsLogIn={userIsLogIn} />
       <main style={{ marginTop: "50px" }}>
         <Container maxWidth="xl">
           <Grid container spacing={4}>
@@ -35,7 +45,7 @@ const Home = () => {
           >
             <Grid item xs={12}>
               <ToolBox />
-              <PostContainer />
+              <PostContainer isHide={userIsLogIn} />
             </Grid>
           </Grid>
         </Container>

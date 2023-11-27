@@ -12,7 +12,8 @@ const iconStyle = {
   cursor: "pointer",
 };
 
-const Post = () => {
+const Post = (props) => {
+  const { isHide } = props;
   return (
     <Card
       sx={{
@@ -45,8 +46,14 @@ const Post = () => {
           justifyContent: "end",
         }}
       >
-        <FavoriteBorderIcon style={iconStyle} />
-        <ChatBubbleOutlineIcon style={iconStyle} />
+        {isHide ? (
+          <>
+            <FavoriteBorderIcon style={iconStyle} />
+            <ChatBubbleOutlineIcon style={iconStyle} />
+          </>
+        ) : (
+          ""
+        )}
         <AddCircleOutlineIcon style={iconStyle} />
       </Box>
     </Card>
