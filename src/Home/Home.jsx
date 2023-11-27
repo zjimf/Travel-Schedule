@@ -7,14 +7,11 @@ import Footer from "./Footer.jsx";
 import News from "./Header/News.jsx";
 import NodeBuild from "./Header/NodeBuild.jsx";
 import PostContainer from "./Content/PostContainer.jsx";
-import { useTheme } from "@mui/material/styles";
 import ToolBox from "./Content/ToolBox.jsx";
 
 const Home = () => {
-  const theme = useTheme();
-
   return (
-    <main style={{ backgroundColor: theme.palette.primary.main }}>
+    <main style={{ backgroundColor: "#f3f4f9" }}>
       <CssBaseline />
       <Header title="Travel Schedule" />
       <main style={{ marginTop: "50px" }}>

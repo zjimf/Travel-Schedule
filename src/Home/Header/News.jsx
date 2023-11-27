@@ -30,7 +30,6 @@ const images = [
 ];
 
 const News = () => {
-  const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const handleStepChange = (step) => {
     setActiveStep(step);
@@ -46,7 +45,6 @@ const News = () => {
       }}
     >
       <AutoPlaySwipeableViews
-        axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={activeStep}
         onChangeIndex={handleStepChange}
         enableMouseEvents
