@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-
+import { useLocation } from "react-router-dom";
+import { StoreUserInfo } from "../Public/Database/StoreUserInfo";
 const container = {
   width: "100vw",
   height: "100vh",
@@ -17,11 +18,15 @@ function Verify() {
   let navigate = useNavigate();
   const [hide, setHide] = useState(false);
   const auth = getAuth();
+  const location = useLocation();
+  const Data = location.state || null;
+  const { uid, name, email, password } = Data;
 
-  const timer = setInterval(function () {
+  const timer = setInterval(async function () {
     auth.currentUser.reload();
     if (auth.currentUser.emailVerified) {
       clearInterval(timer);
+      await StoreUserInfo(uid, name, email, password);
       return navigate("/");
     }
   }, 1000);
@@ -48,7 +53,8 @@ function Verify() {
         }}
       >
         <Typography variant="h5" component="div" gutterBottom>
-          請至信箱點擊連結完成驗證，即可繼續登入
+          Please click on the link in your mailbox to complete the verification
+          and continue to log in.
         </Typography>
 
         <Button
@@ -58,7 +64,7 @@ function Verify() {
           onClick={resend}
           disableElevation
         >
-          重送驗證信
+          Resend
         </Button>
       </Box>
     </div>

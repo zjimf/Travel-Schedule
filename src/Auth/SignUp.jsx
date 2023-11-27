@@ -6,6 +6,7 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Alert from "@mui/material/Alert";
+
 import { useNavigate } from "react-router-dom";
 import { HandleErrorMsg } from "../Public/Methods/HandleErrMsg";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -27,14 +28,20 @@ function SignUp() {
 
     const auth = getAuth();
     try {
-      await createUserWithEmailAndPassword(
+      const uid = await createUserWithEmailAndPassword(
         auth,
         data.get("email"),
         data.get("password")
       ).then((res) => res.user.uid);
       await sendEmailVerification(auth.currentUser);
       await setLoading(false);
-      return navigate("/verify");
+      return navigate("/verify", {
+        state: {
+          uid: uid,
+          name: data.get("name"),
+          email: data.get("email"),
+        },
+      });
     } catch (error) {
       setLoading(false);
       setError(HandleErrorMsg(error.code));
