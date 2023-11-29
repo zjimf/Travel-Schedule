@@ -5,7 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 
-const NodeBuild = () => {
+const NodeBuild = ({ userIsLogIn }) => {
   return (
     <Card
       sx={{
@@ -39,6 +39,7 @@ const NodeBuild = () => {
         <Button
           variant="contained"
           size="medium"
+          href={userIsLogIn ? "/nodeSchedule" : "/login"}
           style={{
             backgroundColor: "#a8e3c4",
             fontWeight: "bold",
