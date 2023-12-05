@@ -1,49 +1,71 @@
-import * as React from "react";
+import React, { useEffect, useRef } from "react";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import SearchBox from "../Public/Map/SearchBox";
 import TextField from "@mui/material/TextField";
-import MapSearchbar from "../Public/Map/MapSearchbar";
+import MapWithDirection from "../Public/Map/MapWithDirection";
 
-export default function AddressForm() {
+const AddressForm = ({
+  setIsAllFilled,
+  setBegin,
+  setEnd,
+  begin,
+  end,
+  nodeNum,
+  setNodeNum,
+}) => {
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (begin !== null && end !== null && nodeNum != null) setIsAllFilled(true);
+  }, [begin, end]);
+
   return (
     <>
-      <Typography variant="h5" gutterBottom>
-        Start / End points
-      </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <TextField
-            required
-            id="address1"
-            name="address1"
-            label="Address line 1"
-            fullWidth
-            autoComplete="shipping address-line1"
-            variant="standard"
-          />
+          <Typography variant="h5" gutterBottom>
+            Start / End points
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <SearchBox isBegin={true} setLocation={setBegin} />
         </Grid>
         <Grid item xs={12}>
           <Typography variant="h5" component="h2">
-            xxx
+            {begin ? begin.formatted_address : ""}
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <SearchBox isBegin={false} setLocation={setEnd} />
+        </Grid>
+        <Grid item xs={12}>
+          <Typography variant="h5" component="h2">
+            {end ? end.formatted_address : ""}
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <MapWithDirection begin={begin} end={end} />
+        </Grid>
+        <Grid item xs={12}>
+          <Typography variant="h5" component="h2">
+            The number of nodes you want
           </Typography>
         </Grid>
         <Grid item xs={12}>
           <TextField
-            id="address2"
-            name="address2"
-            label="Address line 2"
-            fullWidth
-            autoComplete="shipping address-line2"
-            variant="standard"
+            label="1~10"
+            variant="outlined"
+            type="text"
+            inputRef={inputRef}
+            onChange={(e) => {
+              setNodeNum(e.target.value);
+            }}
           />
         </Grid>
-        <Grid item xs={12}>
-          <Typography variant="h5" component="h2">
-            xxx
-          </Typography>
-        </Grid>
-        <MapSearchbar></MapSearchbar>
       </Grid>
     </>
   );
-}
+};
+
+export default AddressForm;
