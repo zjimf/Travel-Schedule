@@ -18,7 +18,7 @@ const AddressForm = ({
 
   useEffect(() => {
     if (begin !== null && end !== null && nodeNum != null) setIsAllFilled(true);
-  }, [begin, end]);
+  }, [begin, end, nodeNum]);
 
   return (
     <>
