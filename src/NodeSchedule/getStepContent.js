@@ -1,6 +1,6 @@
-import AddressForm from "./AddressForm";
-import PreferenceForm from "./PreferenceForm";
-import FinalAdjustments from "./FinalAdjustments";
+import AddressForm from "./AddressForm/AddressForm";
+import PreferenceForm from "./PreferenceForm/PreferenceForm";
+import FinalAdjustments from "./FinalAdjustments/FinalAdjustments";
 
 const getStepContent = (
   step,
@@ -26,7 +26,7 @@ const getStepContent = (
         />
       );
     case 1:
-      return <PreferenceForm />;
+      return <PreferenceForm begin={begin} end={end} nodeNum={nodeNum} />;
     case 2:
       return <FinalAdjustments />;
     default:

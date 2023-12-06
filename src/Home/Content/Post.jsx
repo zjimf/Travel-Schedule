@@ -1,5 +1,5 @@
 import React from "react";
-import NodeLink from "./NodeLink";
+import NodeLink from "../../Public/Node/NodeLink";
 import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -34,7 +34,7 @@ const Post = (props) => {
         }}
       >
         <PostInfo />
-        <NodeLink />
+        <NodeLink nodeNum={5} />
       </Box>
       <Box
         sx={{

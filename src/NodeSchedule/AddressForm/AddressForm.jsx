@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import SearchBox from "../Public/Map/SearchBox";
+import SearchBox from "../../Public/Map/SearchBox";
 import TextField from "@mui/material/TextField";
-import MapWithDirection from "../Public/Map/MapWithDirection";
+import MapWithDirection from "../../Public/Map/MapWithDirection";
 
 const AddressForm = ({
   setIsAllFilled,

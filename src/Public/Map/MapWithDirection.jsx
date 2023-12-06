@@ -13,24 +13,33 @@ class MapWithDirection extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { begin, end } = this.props;
+    const { begin, end, waypoints } = this.props;
     const { directionsService, directionsRenderer } = this.state;
 
-    if (begin !== prevProps.begin || end !== prevProps.end) {
-      directionsService.route(
-        {
-          origin: begin ? begin.formatted_address : "",
-          destination: end ? end.formatted_address : "",
-          travelMode: window.google.maps.TravelMode.DRIVING,
-        },
-        (result, status) => {
-          if (status === window.google.maps.DirectionsStatus.OK) {
-            directionsRenderer.setDirections(result);
-          } else {
-            console.error(`error fetching directions ${result}`);
-          }
+    if (
+      begin !== prevProps.begin ||
+      end !== prevProps.end ||
+      waypoints !== prevProps.waypoints
+    ) {
+      const request = {
+        origin: begin ? begin.formatted_address : "",
+        destination: end ? end.formatted_address : "",
+        travelMode: window.google.maps.TravelMode.DRIVING,
+        waypoints: waypoints
+          ? waypoints.map((waypoint) => ({
+              location: waypoint,
+              stopover: true,
+            }))
+          : [],
+      };
+
+      directionsService.route(request, (result, status) => {
+        if (status === window.google.maps.DirectionsStatus.OK) {
+          directionsRenderer.setDirections(result);
+        } else {
+          console.error(`error fetching directions ${result}`);
         }
-      );
+      });
     }
   }
 
@@ -43,28 +52,33 @@ class MapWithDirection extends Component {
   };
 
   updateDirections = () => {
-    const { begin, end } = this.props;
+    const { begin, end, waypoints } = this.props;
     const { directionsService } = this.state;
 
-    directionsService.route(
-      {
-        origin: begin ? begin.formatted_address : "",
-        destination: end ? end.formatted_address : "",
-        travelMode: window.google.maps.TravelMode.DRIVING,
-      },
-      (result, status) => {
-        if (status === window.google.maps.DirectionsStatus.OK) {
-          this.state.directionsRenderer.setDirections(result);
-        } else {
-          console.error(`error fetching directions ${result}`);
-        }
+    const request = {
+      origin: begin ? begin.formatted_address : "",
+      destination: end ? end.formatted_address : "",
+      travelMode: window.google.maps.TravelMode.DRIVING,
+      waypoints: waypoints
+        ? waypoints.map((waypoint) => ({
+            location: waypoint.formatted_address,
+            stopover: true,
+          }))
+        : [],
+    };
+
+    directionsService.route(request, (result, status) => {
+      if (status === window.google.maps.DirectionsStatus.OK) {
+        this.state.directionsRenderer.setDirections(result);
+      } else {
+        console.error(`error fetching directions ${result}`);
       }
-    );
+    });
   };
 
   render() {
     return (
-      <div>
+      <div style={{ marginTop: "30px" }}>
         <div style={{ height: "400px", width: "100%" }}>
           <GoogleMapReact
             bootstrapURLKeys={{

@@ -11,7 +11,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import getStepContent from "./getStepContent";
 
-const steps = ["Start / End points", "Preference", "Final adjustments"];
+const steps = ["Start / End points", "Adjustment", "Final"];
 
 const NodeSchedule = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -33,7 +33,7 @@ const NodeSchedule = () => {
     <>
       <CssBaseline />
       <Nav />
-      <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
+      <Container component="main" maxWidth="md" sx={{ mb: 4 }}>
         <Paper
           variant="outlined"
           sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}

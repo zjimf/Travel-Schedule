@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import TextField from "@mui/material/TextField";
-import { initAutocomplete } from "./index.ts";
+import { initAutocomplete } from "../Methods/initAutocomplete.ts";
 const SearchBox = ({ isBegin, setLocation }) => {
   const inputRef = useRef(null);
   useEffect(() => {
