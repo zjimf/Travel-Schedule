@@ -1,5 +1,5 @@
 import AddressForm from "./AddressForm/AddressForm";
-import PreferenceForm from "./PreferenceForm/PreferenceForm";
+import PreferenceForm from "./AdjustmentForm/AdjustmentForm";
 import FinalAdjustments from "./FinalAdjustments/FinalAdjustments";
 
 const getStepContent = (

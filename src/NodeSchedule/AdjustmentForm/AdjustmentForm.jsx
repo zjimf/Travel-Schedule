@@ -1,24 +1,25 @@
 import { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import NodeLink from "../../Public/Node/NodeLink";
+import AdjustmentNodeLink from "./AdjustmentNodeLink";
 import MapWithDirection from "../../Public/Map/MapWithDirection";
 import GetRouteAndRandomPoints from "../../Public/Methods/GetRouteAndRandomPoints";
 import RandomPointsGetRandomAttractions from "../../Public/Methods/RandomPointsGetRandomAttractions";
 
-const PreferenceForm = ({ begin, end, nodeNum }) => {
+const AdjustmentForm = ({ begin, end, nodeNum }) => {
   const [attractions, setAttractions] = useState([]);
-
+  const [fiveAttractions, setFiveAttractions] = useState([]);
   useEffect(() => {
     if (window.google && window.google.maps) {
       async function getRandomAttractions(begin, end, nodeNum) {
         const randomPoints = await GetRouteAndRandomPoints(begin, end, nodeNum);
-        // const randomAttractions = await RandomPointsGetRandomAttractions(
-        //   randomPoints
-        // );
-        await setAttractions(randomPoints);
+        const { fiveAttractions, pickFirstOne } =
+          await RandomPointsGetRandomAttractions(randomPoints);
+        await setFiveAttractions([[{}], ...fiveAttractions, [{}]]);
+        await setAttractions(pickFirstOne);
       }
       getRandomAttractions(begin, end, nodeNum);
+      console.log(attractions);
     } else {
       console.error("Google Maps API not loaded");
     }
@@ -29,10 +30,16 @@ const PreferenceForm = ({ begin, end, nodeNum }) => {
       <Typography variant="h6" gutterBottom>
         Adjustments
       </Typography>
-      <NodeLink nodeNum={nodeNum} begin={begin} end={end} />
+      <AdjustmentNodeLink
+        nodeNum={nodeNum}
+        begin={begin}
+        end={end}
+        fiveAttractions={fiveAttractions}
+        setFiveAttractions={setFiveAttractions}
+      />
       <MapWithDirection begin={begin} end={end} waypoints={attractions} />
     </Box>
   );
 };
 
-export default PreferenceForm;
+export default AdjustmentForm;

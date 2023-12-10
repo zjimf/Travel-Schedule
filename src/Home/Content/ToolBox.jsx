@@ -18,7 +18,6 @@ const ToolBox = () => {
     >
       <SearchBar
         onChange={(value) => {}}
-        onRequestSearch={() => console.log("onRequestSearch")}
         style={{
           maxWidth: 800,
         }}

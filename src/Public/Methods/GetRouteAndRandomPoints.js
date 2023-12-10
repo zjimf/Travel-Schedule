@@ -19,7 +19,7 @@ const getRouteAndRandomPoints = (begin, end, nodeNum) => {
         const path = route.overview_path;
 
         const randomPoints = [];
-        for (let i = 0; i < nodeNum - 2; i++) {
+        for (let i = 0; i < nodeNum; i++) {
           const randomIndex = Math.floor(Math.random() * path.length);
           const randomPoint = path[randomIndex];
           randomPoints.push({

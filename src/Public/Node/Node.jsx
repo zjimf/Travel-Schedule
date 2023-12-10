@@ -1,15 +1,19 @@
 import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 
-function Node({ index, len, begin, end }) {
+function Node({ index, len, begin, end, fiveAttractions }) {
   const [info, setInfo] = useState("");
 
   useEffect(() => {
     if (index === 0) setInfo(begin ? begin.formatted_address : "-");
     else if (index === len - 1) setInfo(end ? end.formatted_address : "-");
-    else setInfo("-");
-  }, [begin, end]);
-
+    else
+      setInfo(
+        fiveAttractions && fiveAttractions.length > 0
+          ? fiveAttractions[index][0].name
+          : "-"
+      );
+  }, [begin, end, fiveAttractions]);
   return (
     <Box
       sx={{
