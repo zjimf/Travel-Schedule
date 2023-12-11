@@ -34,7 +34,7 @@ const Post = (props) => {
         }}
       >
         <PostInfo />
-        <NodeLink nodeNum={5} />
+        <NodeLink nodeNum={5} finalNodes={[]} />
       </Box>
       <Box
         sx={{

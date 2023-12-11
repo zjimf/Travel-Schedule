@@ -6,7 +6,13 @@ import MapWithDirection from "../../Public/Map/MapWithDirection";
 import GetRouteAndRandomPoints from "../../Public/Methods/GetRouteAndRandomPoints";
 import RandomPointsGetRandomAttractions from "../../Public/Methods/RandomPointsGetRandomAttractions";
 
-const AdjustmentForm = ({ begin, end, nodeNum }) => {
+const AdjustmentForm = ({
+  setIsAllFilled,
+  begin,
+  end,
+  nodeNum,
+  setFinalNodes,
+}) => {
   const [attractions, setAttractions] = useState([]);
   const [fiveAttractions, setFiveAttractions] = useState([]);
   useEffect(() => {
@@ -16,10 +22,11 @@ const AdjustmentForm = ({ begin, end, nodeNum }) => {
         const { fiveAttractions, pickFirstOne } =
           await RandomPointsGetRandomAttractions(randomPoints);
         await setFiveAttractions([[{}], ...fiveAttractions, [{}]]);
+        await setFinalNodes([begin, ...fiveAttractions, end]);
         await setAttractions(pickFirstOne);
+        await setIsAllFilled(true);
       }
       getRandomAttractions(begin, end, nodeNum);
-      console.log(attractions);
     } else {
       console.error("Google Maps API not loaded");
     }

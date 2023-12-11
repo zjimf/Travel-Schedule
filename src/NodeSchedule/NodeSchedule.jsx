@@ -11,7 +11,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import getStepContent from "./getStepContent";
 
-const steps = ["Start / End points", "Adjustment", "Final"];
+const steps = ["Start / End points", "Adjustment"];
 
 const NodeSchedule = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -19,6 +19,7 @@ const NodeSchedule = () => {
   const [begin, setBegin] = useState(null);
   const [end, setEnd] = useState(null);
   const [nodeNum, setNodeNum] = useState(null);
+  const [finalNodes, setFinalNodes] = useState();
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -69,7 +70,9 @@ const NodeSchedule = () => {
                 end,
                 nodeNum,
                 setNodeNum,
-                setIsAllFilled
+                setIsAllFilled,
+                finalNodes,
+                setFinalNodes
               )}
               <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                 {activeStep !== 0 && (
@@ -84,7 +87,7 @@ const NodeSchedule = () => {
                   sx={{ mt: 3, ml: 1 }}
                   disabled={!isAllFilled}
                 >
-                  {activeStep === steps.length - 1 ? "Place order" : "Next"}
+                  {activeStep === steps.length - 1 ? "Store" : "Next"}
                 </Button>
               </Box>
             </>

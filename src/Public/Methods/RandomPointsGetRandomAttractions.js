@@ -29,7 +29,7 @@ async function RandomPointsGetRandomAttractions(randomPoints) {
         pickFive.push(attractions[getRandomInt(attractions.length)]);
 
       fiveAttractions.push(pickFive);
-      pickFirstOne.push(attractions[0].location);
+      pickFirstOne.push(attractions[0]);
     } catch (error) {
       console.error(error);
     }

@@ -1,6 +1,5 @@
 import AddressForm from "./AddressForm/AddressForm";
 import PreferenceForm from "./AdjustmentForm/AdjustmentForm";
-import FinalAdjustments from "./FinalAdjustments/FinalAdjustments";
 
 const getStepContent = (
   step,
@@ -10,7 +9,9 @@ const getStepContent = (
   end,
   nodeNum,
   setNodeNum,
-  setIsAllFilled
+  setIsAllFilled,
+  finalNodes,
+  setFinalNodes
 ) => {
   switch (step) {
     case 0:
@@ -26,9 +27,15 @@ const getStepContent = (
         />
       );
     case 1:
-      return <PreferenceForm begin={begin} end={end} nodeNum={nodeNum} />;
-    case 2:
-      return <FinalAdjustments />;
+      return (
+        <PreferenceForm
+          setIsAllFilled={setIsAllFilled}
+          begin={begin}
+          end={end}
+          nodeNum={nodeNum}
+          setFinalNodes={setFinalNodes}
+        />
+      );
     default:
       throw new Error("Unknown step");
   }

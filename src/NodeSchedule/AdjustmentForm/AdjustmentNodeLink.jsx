@@ -42,7 +42,7 @@ const AdjustmentNodeLink = ({
               len={nodesArray.length}
               begin={begin}
               end={end}
-              fiveAttractions={fiveAttractions === [] ? [] : fiveAttractions}
+              finalNodes={fiveAttractions === [] ? [] : fiveAttractions}
             />
             {fiveAttractions[index] !== undefined ? (
               <AltNode

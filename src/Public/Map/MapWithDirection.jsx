@@ -15,7 +15,6 @@ class MapWithDirection extends Component {
   componentDidUpdate(prevProps) {
     const { begin, end, waypoints } = this.props;
     const { directionsService, directionsRenderer } = this.state;
-
     if (
       begin !== prevProps.begin ||
       end !== prevProps.end ||
@@ -27,7 +26,7 @@ class MapWithDirection extends Component {
         travelMode: window.google.maps.TravelMode.DRIVING,
         waypoints: waypoints
           ? waypoints.map((waypoint) => ({
-              location: waypoint,
+              location: waypoint.location,
               stopover: true,
             }))
           : [],
