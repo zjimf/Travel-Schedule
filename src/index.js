@@ -7,6 +7,7 @@ import SignUp from "./Auth/SignUp";
 import Verify from "./Auth/Verify";
 import Forgot from "./Auth/Forgot";
 import NodeSchedule from "./NodeSchedule/NodeSchedule";
+import User from "./User/User";
 import { db } from "./config/firebase-config";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -18,6 +19,7 @@ root.render(
       <Route path="/signup" element={<SignUp />} />
       <Route path="/verify" element={<Verify />} />
       <Route path="/forgot" element={<Forgot />} />
+      <Route path="/user" element={<User />} />
       <Route path="/nodeSchedule" element={<NodeSchedule />} />
     </Routes>
   </Router>

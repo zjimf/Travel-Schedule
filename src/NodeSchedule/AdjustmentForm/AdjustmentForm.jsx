@@ -19,10 +19,10 @@ const AdjustmentForm = ({
     if (window.google && window.google.maps) {
       async function getRandomAttractions(begin, end, nodeNum) {
         const randomPoints = await GetRouteAndRandomPoints(begin, end, nodeNum);
-        const { fiveAttractions, pickFirstOne } =
-          await RandomPointsGetRandomAttractions(randomPoints);
-        await setFiveAttractions([[{}], ...fiveAttractions, [{}]]);
-        await setFinalNodes([begin, ...fiveAttractions, end]);
+        const { allAttractions, pickFirstOne } =
+          await RandomPointsGetRandomAttractions(begin, end, randomPoints);
+        await setFiveAttractions([[{}], ...allAttractions, [{}]]);
+        await setFinalNodes([begin, ...allAttractions, end]);
         await setAttractions(pickFirstOne);
         await setIsAllFilled(true);
       }

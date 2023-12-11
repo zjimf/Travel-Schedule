@@ -3,9 +3,10 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
-async function RandomPointsGetRandomAttractions(randomPoints) {
-  let fiveAttractions = [];
+async function RandomPointsGetRandomAttractions(begin, end, randomPoints) {
+  let allAttractions = [];
   const pickFirstOne = [];
+  let cleanedBegin, cleanedEnd;
   for (const point of randomPoints) {
     const pickFive = [];
     try {
@@ -25,17 +26,18 @@ async function RandomPointsGetRandomAttractions(randomPoints) {
           lng: result.geometry.location.lng,
         },
       }));
+
       for (let i = 0; i < 6; i++)
         pickFive.push(attractions[getRandomInt(attractions.length)]);
 
-      fiveAttractions.push(pickFive);
+      allAttractions.push(pickFive);
       pickFirstOne.push(attractions[0]);
     } catch (error) {
       console.error(error);
     }
   }
 
-  return { fiveAttractions, pickFirstOne };
+  return { allAttractions, pickFirstOne };
 }
 
 export default RandomPointsGetRandomAttractions;
