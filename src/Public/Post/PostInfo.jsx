@@ -20,9 +20,6 @@ const PostInfo = () => {
       >
         Jim
       </Typography>
-      <Typography sx={{ width: "350px", wordWrap: "break-word" }}>
-        adjectiveadjectiveadjectiveadjectiveadjectiveadjectiveadjectiveadjectiveadjectiveadjectiveadjective
-      </Typography>
     </Stack>
   );
 };

@@ -3,11 +3,11 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Header from "../Public/Nav/Header.jsx";
-import Footer from "./Footer.jsx";
-import News from "./Header/News.jsx";
-import NodeBuild from "./Header/NodeBuild.jsx";
-import PostContainer from "./Content/PostContainer.jsx";
-import ToolBox from "./Content/ToolBox.jsx";
+import Footer from "../Public/Footer/Footer.jsx";
+import News from "../Public/Header/News.jsx";
+import NodeBuild from "../Public/Header/NodeBuild.jsx";
+import PostContainer from "../Public/Post/PostContainer.jsx";
+import ToolBox from "../Public/Post/ToolBox.jsx";
 import { CheckUserIsLogin } from "../Public/Methods/CheckUserIsLogin.js";
 
 const Home = () => {

@@ -1,14 +1,14 @@
 import React from "react";
-import NodeLink from "../../Public/Node/NodeLink";
+import NodeLink from "../Node/NodeLink";
 import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import PostInfo from "./PostInfo";
 const iconStyle = {
   fontSize: "30px",
-  marginLeft: "10px",
+  marginLeft: "4px",
+  marginRight: "15px",
   cursor: "pointer",
 };
 
@@ -36,26 +36,32 @@ const Post = (props) => {
         <PostInfo />
         <NodeLink nodeNum={5} finalNodes={[]} />
       </Box>
-      <Box
-        sx={{
-          width: "100%",
-          height: "50px",
-          marginTop: "10px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "end",
-        }}
-      >
-        {isHide ? (
-          <>
+      {!isHide ? (
+        ""
+      ) : (
+        <Box
+          sx={{
+            width: "100%",
+            height: "50px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "end",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "end",
+            }}
+          >
+            123
             <FavoriteBorderIcon style={iconStyle} />
+            123
             <ChatBubbleOutlineIcon style={iconStyle} />
-          </>
-        ) : (
-          ""
-        )}
-        <AddCircleOutlineIcon style={iconStyle} />
-      </Box>
+          </Box>
+        </Box>
+      )}
     </Card>
   );
 };

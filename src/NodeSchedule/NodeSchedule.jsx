@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
-import Nav from "../Public/Nav/Header";
+import Header from "../Public/Nav/Header";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import Stepper from "@mui/material/Stepper";
@@ -46,7 +46,7 @@ const NodeSchedule = () => {
   return (
     <>
       <CssBaseline />
-      <Nav />
+      <Header />
       <Container component="main" maxWidth="md" sx={{ mb: 4 }}>
         <Paper
           variant="outlined"

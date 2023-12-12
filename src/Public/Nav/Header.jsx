@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import LoginBtn from "./LoginBtn";
-import LogoutBtn from "./LogoutBtn";
+import UserBtn from "./UserBtn";
 import { CheckUserIsLogin } from "../../Public/Methods/CheckUserIsLogin";
+
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
@@ -43,7 +44,7 @@ const Header = () => {
       >
         Travel Schedule
       </Typography>
-      {userIsLogIn ? <LogoutBtn /> : <LoginBtn />}
+      {userIsLogIn ? <UserBtn /> : <LoginBtn />}
     </Toolbar>
   );
 };
