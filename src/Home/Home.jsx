@@ -14,13 +14,12 @@ const Home = () => {
   const [userIsLogIn, setUserIsLogIn] = useState(false);
 
   useEffect(() => {
-    const fetchUserIsLogin = async () => {
+    const fetchDataAndCheckLogin = async () => {
       const isUserLoggedIn = await CheckUserIsLogin();
-      setUserIsLogIn(isUserLoggedIn);
+      if (isUserLoggedIn) await setUserIsLogIn(true);
     };
-    fetchUserIsLogin();
+    fetchDataAndCheckLogin();
   }, []);
-
   return (
     <main style={{ backgroundColor: "#f3f4f9" }}>
       <CssBaseline />
@@ -46,7 +45,7 @@ const Home = () => {
           >
             <Grid item xs={12}>
               <ToolBox />
-              <PostContainer isHide={userIsLogIn} />
+              {/* <PostContainer isHide={userIsLogIn} /> */}
             </Grid>
           </Grid>
         </Container>

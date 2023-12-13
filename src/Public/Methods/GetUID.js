@@ -1,9 +1,21 @@
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-function GetUID() {
-  const auth = getAuth();
-  const user = auth.currentUser;
-  if (user !== null) return user.uid;
+async function GetUID() {
+  return new Promise((resolve, reject) => {
+    const auth = getAuth();
+
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (user) => {
+        if (user) {
+          const uid = user.uid;
+          resolve(uid);
+          unsubscribe();
+        }
+      },
+      reject
+    );
+  });
 }
 
 export { GetUID };

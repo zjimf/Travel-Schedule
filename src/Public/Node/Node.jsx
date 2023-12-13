@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 
-function Node({ index, len, begin, end, finalNodes }) {
+function Node({ index, len, begin, end, finalNodes, flag }) {
   const [info, setInfo] = useState("");
   useEffect(() => {
     if (index === 0) setInfo(begin ? begin.formatted_address : "-");
@@ -10,7 +10,11 @@ function Node({ index, len, begin, end, finalNodes }) {
     else
       setInfo(
         finalNodes && finalNodes.length > 0 ? (
-          finalNodes[index][0].name
+          flag ? (
+            finalNodes[index][0].name
+          ) : (
+            finalNodes[index - 1].name
+          )
         ) : (
           <CircularProgress disableShrink />
         )

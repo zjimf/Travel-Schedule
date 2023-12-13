@@ -36,7 +36,7 @@ const NodeSchedule = () => {
     setIsClick(true);
     const uid = await GetUID();
     await StoreSchedule(uid, finalNodes);
-    await navigate("/user");
+    await navigate("/profile");
   };
 
   const handleBack = () => {

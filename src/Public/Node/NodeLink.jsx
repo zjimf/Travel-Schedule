@@ -3,8 +3,9 @@ import Node from "./Node";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 
-const NodeLink = ({ nodeNum, begin, end, finalNodes }) => {
-  const len = parseInt(nodeNum);
+const NodeLink = ({ schedules, flag }) => {
+  const { begin, end, finalNodes } = schedules;
+  const len = parseInt(finalNodes.length + 2);
   const nodesArray = Array.from({ length: len }, (_, index) => index);
 
   return (
@@ -29,6 +30,7 @@ const NodeLink = ({ nodeNum, begin, end, finalNodes }) => {
             begin={begin}
             end={end}
             finalNodes={finalNodes}
+            flag={flag}
           />
         ))}
       </Stack>
