@@ -7,12 +7,8 @@ const HandleLogInSubmit = async (event, setError, navigateRef) => {
   const auth = await getAuth();
   signInWithEmailAndPassword(auth, data.get("email"), data.get("password"))
     .then(async (userCredential) => {
-      const uid = userCredential.user.uid;
-      navigateRef.current("/", {
-        state: {
-          uid: uid,
-        },
-      });
+      sessionStorage.setItem("isLogin", true);
+      navigateRef.current("/");
     })
     .catch((error) => {
       setError("Account or password is wrong, Please try again！");

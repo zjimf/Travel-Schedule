@@ -3,8 +3,6 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import LoginBtn from "./LoginBtn";
 import UserBtn from "./UserBtn";
-import { CheckUserIsLogin } from "../../Public/Methods/CheckUserIsLogin";
-
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
@@ -12,13 +10,9 @@ const Header = () => {
   const [userIsLogIn, setUserIsLogIn] = useState(false);
 
   useEffect(() => {
-    const fetchUserIsLogin = async () => {
-      const isUserLoggedIn = await CheckUserIsLogin();
-      setUserIsLogIn(isUserLoggedIn);
-    };
-    fetchUserIsLogin();
+    const storedIsLogin = sessionStorage.getItem("isLogin");
+    setUserIsLogIn(storedIsLogin ? JSON.parse(storedIsLogin) : false);
   }, []);
-
   return (
     <Toolbar
       sx={{

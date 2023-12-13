@@ -6,6 +6,7 @@ async function StoreUserInfo(uid, name, email) {
     name,
     email,
     timeStamp: new Date(),
+    avatar: "",
   });
 }
 

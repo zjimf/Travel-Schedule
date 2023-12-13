@@ -27,6 +27,7 @@ function Verify() {
     if (auth.currentUser.emailVerified) {
       clearInterval(timer);
       await StoreUserInfo(uid, name, email, password);
+      sessionStorage.setItem("isLogin", true);
       return navigate("/");
     }
   }, 1000);

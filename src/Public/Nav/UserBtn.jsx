@@ -46,6 +46,7 @@ const UserBtn = (props) => {
             color="error"
             onClick={(e) => {
               signOut(auth);
+              sessionStorage.setItem("isLogin", false);
               navigate("/");
               window.location.reload();
             }}
