@@ -12,7 +12,7 @@ const iconStyle = {
   cursor: "pointer",
 };
 
-const Post = ({ isHide, schedules, flag }) => {
+const Post = ({ userInfo, isHide, schedules, flag }) => {
   return (
     <Card
       sx={{
@@ -32,7 +32,7 @@ const Post = ({ isHide, schedules, flag }) => {
           },
         }}
       >
-        <PostInfo />
+        <PostInfo userInfo={userInfo} />
         <NodeLink nodeNum={5} schedules={schedules} flag={flag} />
       </Box>
       {!isHide ? (

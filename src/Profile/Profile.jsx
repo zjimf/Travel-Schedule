@@ -9,18 +9,24 @@ import ToolBox from "../Public/Post/ToolBox.jsx";
 import Footer from "../Public/Footer/Footer.jsx";
 import Typography from "@mui/material/Typography";
 import User from "./User.jsx";
-import { GetUID } from "../Public/Methods/GetUID.js";
-import { GetSchedule } from "../Public/Methods/GetSchedule.js";
-
+import { GetUID } from "../Public/Database/GetUID.js";
+import { GetSchedule } from "../Public/Database/GetSchedule.js";
+import { GetUserInfo } from "../Public/Database/GetUserInfo.js";
 const Profile = () => {
   const [schedules, setSchedule] = useState([]);
+  const [userInfo, setUserInfo] = useState({});
   useEffect(() => {
     async function getSchedule() {
       const uid = await GetUID();
+      setUserInfo(await GetUserInfo(uid));
       setSchedule(await GetSchedule(uid));
     }
     getSchedule();
   }, []);
+
+  useEffect(() => {
+    // console.log(userInfo);
+  }, [userInfo]);
 
   return (
     <main style={{ backgroundColor: "#f3f4f9" }}>
@@ -28,7 +34,7 @@ const Profile = () => {
       <Header />
       <main style={{ marginTop: "50px" }}>
         <Container maxWidth="xl">
-          <User />
+          <User userInfo={userInfo} />
           <Grid
             container
             spacing={4}
@@ -48,7 +54,11 @@ const Profile = () => {
                 <Typography variant="h5">Your Schedules</Typography>
                 <ToolBox />
               </Box>
-              <PostContainer schedules={schedules} flag={false} />
+              <PostContainer
+                userInfo={userInfo}
+                schedules={schedules}
+                flag={false}
+              />
             </Grid>
           </Grid>
         </Container>

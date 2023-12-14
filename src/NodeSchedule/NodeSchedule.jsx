@@ -10,7 +10,7 @@ import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import getStepContent from "./getStepContent";
-import { GetUID } from "../Public/Methods/GetUID";
+import { GetUID } from "../Public/Database/GetUID";
 import { StoreSchedule } from "../Public/Database/StoreSchedule";
 import { useNavigate } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";

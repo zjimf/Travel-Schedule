@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 
-const User = () => {
+const User = ({ userInfo }) => {
   return (
     <Card
       sx={{
@@ -26,11 +26,11 @@ const User = () => {
         flexWrap="wrap"
         sx={{ margin: "30px 0px 30px 0px" }}
       >
-        <Avatar>J</Avatar>
+        <Avatar src={userInfo.avatar}></Avatar>
         <Typography
           sx={{ fontSize: 20, whiteSpace: "normal", fontWeight: "bold" }}
         >
-          Jim
+          {userInfo.name}
         </Typography>
       </Stack>
       <Stack
