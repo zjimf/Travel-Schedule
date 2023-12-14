@@ -18,20 +18,19 @@ const Profile = () => {
   const [schedules, setSchedule] = useState([]);
   const [userInfo, setUserInfo] = useState({});
   const [getDataFinish, setGetDataFinish] = useState(false);
+  const [docID, setDocID] = useState("");
 
   useEffect(() => {
     async function getSchedule() {
       const uid = await GetUID();
       setUserInfo(await GetUserInfo(uid));
-      setSchedule(await GetSchedule(uid));
+      const { docID, schedules } = await GetSchedule(uid);
+      setSchedule(schedules);
+      setDocID(docID);
       await setGetDataFinish(true);
     }
     getSchedule();
   }, []);
-
-  useEffect(() => {
-    console.log(schedules.length === 0);
-  }, [schedules]);
 
   return (
     <main style={{ backgroundColor: "#f3f4f9" }}>
@@ -61,9 +60,11 @@ const Profile = () => {
               </Box>
               {getDataFinish ? (
                 <PostContainer
+                  isHide={true}
                   userInfo={userInfo}
                   schedules={schedules}
-                  flag={false}
+                  docID={docID}
+                  canAdjust={false}
                 />
               ) : (
                 <Box

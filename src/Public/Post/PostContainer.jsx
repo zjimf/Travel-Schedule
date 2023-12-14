@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 import Typography from "@mui/material/Typography";
 
-const PostContainer = ({ userInfo, isHide, schedules, flag }) => {
+const PostContainer = ({ userInfo, docID, isHide, schedules, canAdjust }) => {
   let navigate = useNavigate();
 
   const handleRedirect = () => {
@@ -38,7 +38,7 @@ const PostContainer = ({ userInfo, isHide, schedules, flag }) => {
         ""
       )}
 
-      {schedules.map((schedules, i) => (
+      {schedules.map((schedule, i) => (
         <Box
           key={i}
           sx={{
@@ -47,12 +47,13 @@ const PostContainer = ({ userInfo, isHide, schedules, flag }) => {
             justifyContent: "space-around",
           }}
         >
-          <Share schedules={schedules} />
+          <Share schedule={schedule} docID={docID[i]} />
           <Post
             userInfo={userInfo}
+            docID={docID[i]}
             isHide={isHide}
-            schedules={schedules}
-            flag={flag}
+            schedule={schedule}
+            canAdjust={canAdjust}
           />
         </Box>
       ))}

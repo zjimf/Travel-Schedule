@@ -21,6 +21,7 @@ async function StoreSchedule(uid, finalNodes) {
     },
     finalNodes: [],
     timeStamp: new Date(),
+    isPublic: false,
   };
 
   for (let i = 1; i < finalNodes.length - 1; i++)

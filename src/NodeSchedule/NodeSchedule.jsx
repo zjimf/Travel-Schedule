@@ -92,7 +92,7 @@ const NodeSchedule = () => {
                   {isClick ? (
                     <CircularProgress color="inherit" sx={{ width: "5px" }} />
                   ) : (
-                    "Store"
+                    "Save"
                   )}
                 </Button>
               ) : (
