@@ -42,6 +42,9 @@ const User = ({ userInfo }) => {
         flexWrap="wrap"
         sx={{ margin: "30px 0px 30px 0px" }}
       >
+        <Button variant="outlined" sx={{ color: "gray", borderColor: "gray" }}>
+          Change User Information
+        </Button>
         <Button variant="outlined">Change Password</Button>
         <Button variant="outlined" color="error">
           Delete Account

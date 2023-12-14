@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Share from "./Share";
 
 const PostContainer = ({ userInfo, isHide, schedules, flag }) => {
+  console.log(schedules);
   return (
     <Stack spacing={2}>
       {schedules.map((schedules, i) => (

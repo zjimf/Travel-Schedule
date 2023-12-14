@@ -24,10 +24,6 @@ const Profile = () => {
     getSchedule();
   }, []);
 
-  useEffect(() => {
-    // console.log(userInfo);
-  }, [userInfo]);
-
   return (
     <main style={{ backgroundColor: "#f3f4f9" }}>
       <CssBaseline />
