@@ -12,17 +12,26 @@ import User from "./User.jsx";
 import { GetUID } from "../Public/Database/GetUID.js";
 import { GetSchedule } from "../Public/Database/GetSchedule.js";
 import { GetUserInfo } from "../Public/Database/GetUserInfo.js";
+import CircularProgress from "@mui/material/CircularProgress";
+
 const Profile = () => {
   const [schedules, setSchedule] = useState([]);
   const [userInfo, setUserInfo] = useState({});
+  const [getDataFinish, setGetDataFinish] = useState(false);
+
   useEffect(() => {
     async function getSchedule() {
       const uid = await GetUID();
       setUserInfo(await GetUserInfo(uid));
       setSchedule(await GetSchedule(uid));
+      await setGetDataFinish(true);
     }
     getSchedule();
   }, []);
+
+  useEffect(() => {
+    console.log(schedules.length === 0);
+  }, [schedules]);
 
   return (
     <main style={{ backgroundColor: "#f3f4f9" }}>
@@ -50,11 +59,23 @@ const Profile = () => {
                 <Typography variant="h5">Your Schedules</Typography>
                 <ToolBox />
               </Box>
-              <PostContainer
-                userInfo={userInfo}
-                schedules={schedules}
-                flag={false}
-              />
+              {getDataFinish ? (
+                <PostContainer
+                  userInfo={userInfo}
+                  schedules={schedules}
+                  flag={false}
+                />
+              ) : (
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <CircularProgress />
+                </Box>
+              )}
             </Grid>
           </Grid>
         </Container>
