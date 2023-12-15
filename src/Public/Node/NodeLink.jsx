@@ -16,9 +16,6 @@ const NodeLink = ({ schedule, canAdjust }) => {
         alignItems: "center",
         overflowY: "auto",
         marginY: "30px",
-        "@media (max-width: 430px)": {
-          display: "none",
-        },
       }}
     >
       <Stack direction="row" spacing={5}>

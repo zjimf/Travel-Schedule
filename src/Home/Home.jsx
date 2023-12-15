@@ -8,35 +8,29 @@ import News from "../Public/Header/News.jsx";
 import NodeBuild from "../Public/Header/NodeBuild.jsx";
 import ToolBox from "../Public/Post/ToolBox.jsx";
 import PostContainer from "../Public/Post/PostContainer.jsx";
-import { GetUID } from "../Public/Database/GetUID.js";
-import { GetSchedule } from "../Public/Database/GetSchedule.js";
-import { GetUserInfo } from "../Public/Database/GetUserInfo.js";
+import { GetRandomSchedule } from "../Public/Database/GetRandomSchedule.js";
+import LinearProgress from "@mui/material/LinearProgress";
 
 const Home = () => {
   const [userIsLogIn, setUserIsLogIn] = useState(false);
-  const [schedules, setSchedule] = useState([]);
-  const [userInfo, setUserInfo] = useState({});
-  const [getDataFinish, setGetDataFinish] = useState(false);
-  const [docID, setDocID] = useState("");
+  const [schedules, setSchedules] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     async function getSchedule() {
-      // const uid = await GetUID();
       const storedIsLogin = sessionStorage.getItem("isLogin");
       setUserIsLogIn(storedIsLogin ? JSON.parse(storedIsLogin) : false);
-      // setUserInfo(await GetUserInfo(uid));
-      // const { docID, schedules } = await GetSchedule(uid);
-      // setSchedule(schedules);
-      // setDocID(docID);
-      // await setGetDataFinish(true);
+      const { schedules, users } = await GetRandomSchedule();
+      await setSchedules(schedules);
+      await setUsers(users);
     }
     getSchedule();
   }, []);
 
   useEffect(() => {
-    const storedIsLogin = sessionStorage.getItem("isLogin");
-    setUserIsLogIn(storedIsLogin ? JSON.parse(storedIsLogin) : false);
-  }, []);
+    console.log({ schedules, users });
+  }, [schedules, users]);
+
   return (
     <main style={{ backgroundColor: "#f3f4f9" }}>
       <CssBaseline />
@@ -60,15 +54,19 @@ const Home = () => {
               marginTop: "30px",
             }}
           >
-            <Grid item xs={12}>
+            <Grid item xs={12} justifyContent="center">
               <ToolBox />
-              {/* <PostContainer
+              {users.length === 0 ? (
+                <LinearProgress />
+              ) : (
+                <PostContainer
                   isHide={!userIsLogIn}
-                  userInfo={userInfo}
+                  userInfo={users}
                   schedules={schedules}
-                  docID={docID}
+                  docID={""}
                   canAdjust={false}
-                /> */}
+                />
+              )}
             </Grid>
           </Grid>
         </Container>

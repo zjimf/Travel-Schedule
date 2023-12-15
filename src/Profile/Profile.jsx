@@ -12,22 +12,20 @@ import User from "./User.jsx";
 import { GetUID } from "../Public/Database/GetUID.js";
 import { GetSchedule } from "../Public/Database/GetSchedule.js";
 import { GetUserInfo } from "../Public/Database/GetUserInfo.js";
-import CircularProgress from "@mui/material/CircularProgress";
+import LinearProgress from "@mui/material/LinearProgress";
 
 const Profile = () => {
   const [schedules, setSchedule] = useState([]);
-  const [userInfo, setUserInfo] = useState({});
-  const [getDataFinish, setGetDataFinish] = useState(false);
+  const [userInfo, setUserInfo] = useState([]);
   const [docID, setDocID] = useState("");
 
   useEffect(() => {
     async function getSchedule() {
       const uid = await GetUID();
-      setUserInfo(await GetUserInfo(uid));
-      const { docID, schedules } = await GetSchedule(uid);
-      setSchedule(schedules);
-      setDocID(docID);
-      await setGetDataFinish(true);
+      const { docID, schedules, users } = await GetSchedule(uid);
+      await setSchedule(schedules);
+      await setDocID(docID);
+      await setUserInfo(users);
     }
     getSchedule();
   }, []);
@@ -38,7 +36,7 @@ const Profile = () => {
       <Header />
       <main style={{ marginTop: "50px" }}>
         <Container maxWidth="xl">
-          <User userInfo={userInfo} />
+          <User userInfo={userInfo.length === 0 ? {} : userInfo[0]} />
           <Grid
             container
             spacing={4}
@@ -58,7 +56,9 @@ const Profile = () => {
                 <Typography variant="h5">Your Schedules</Typography>
                 <ToolBox />
               </Box>
-              {getDataFinish ? (
+              {docID === "" ? (
+                <LinearProgress />
+              ) : (
                 <PostContainer
                   isHide={true}
                   userInfo={userInfo}
@@ -66,16 +66,6 @@ const Profile = () => {
                   docID={docID}
                   canAdjust={false}
                 />
-              ) : (
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <CircularProgress />
-                </Box>
               )}
             </Grid>
           </Grid>

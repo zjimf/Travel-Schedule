@@ -47,10 +47,9 @@ const PostContainer = ({ userInfo, docID, isHide, schedules, canAdjust }) => {
             justifyContent: "space-around",
           }}
         >
-          <Share schedule={schedule} docID={docID[i]} />
+          {docID === "" ? "" : <Share schedule={schedule} docID={docID[i]} />}
           <Post
-            userInfo={userInfo}
-            docID={docID[i]}
+            userInfo={userInfo[i]}
             isHide={isHide}
             schedule={schedule}
             canAdjust={canAdjust}

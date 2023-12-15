@@ -7,7 +7,6 @@ import { RemoveFromPublic } from "../Database/RemoveFromPublic";
 import CancelIcon from "@mui/icons-material/Cancel";
 
 const Share = ({ schedule, docID }) => {
-  console.log(docID, schedule);
   const [isPublic, setIsPublic] = useState(schedule.isPublic);
 
   const handleRemoveFromPublic = (schedule) => {

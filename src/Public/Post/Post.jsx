@@ -21,15 +21,13 @@ const Post = ({ userInfo, isHide, schedule, canAdjust }) => {
         flexDirection: "column",
         paddingLeft: "30px",
         paddingRight: "30px",
+        width: "100%",
       }}
     >
       <Box
         sx={{
           display: "flex",
           flexDirection: "row",
-          "@media (max-width: 1024px)": {
-            flexWrap: "wrap",
-          },
         }}
       >
         <PostInfo userInfo={userInfo} />
