@@ -29,8 +29,9 @@ const GetRandomSchedule = async () => {
   const users = await Promise.all(userPromises);
 
   const schedules = querySnapshotRandom.docs.map((document) => document.data());
+  const docID = querySnapshotRandom.docs.map((document) => document.id);
 
-  return { schedules, users };
+  return { schedules, users, docID };
 };
 
 export { GetRandomSchedule };

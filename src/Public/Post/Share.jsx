@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ShareIcon from "@mui/icons-material/Share";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
@@ -20,13 +20,13 @@ const Share = ({ schedule, docID }) => {
   };
 
   return isPublic ? (
-    <Tooltip title="REMOVE FROM GLOBAL" sx={{ marginY: "10px" }}>
+    <Tooltip title="REMOVE FROM GLOBAL" sx={{ marginRight: "20px" }}>
       <IconButton onClick={() => handleRemoveFromPublic(schedule, docID)}>
         <CancelIcon sx={{ fontSize: "30px" }} />
       </IconButton>
     </Tooltip>
   ) : (
-    <Tooltip title="SHARE TO GLOBAL" sx={{ marginY: "10px" }}>
+    <Tooltip title="SHARE TO GLOBAL" sx={{ marginRight: "20px" }}>
       <IconButton onClick={() => handleStoreInPublic(schedule, docID)}>
         <ShareIcon sx={{ fontSize: "30px" }} />
       </IconButton>

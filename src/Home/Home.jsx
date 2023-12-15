@@ -15,14 +15,16 @@ const Home = () => {
   const [userIsLogIn, setUserIsLogIn] = useState(false);
   const [schedules, setSchedules] = useState([]);
   const [users, setUsers] = useState([]);
+  const [docID, setDocID] = useState([]);
 
   useEffect(() => {
     async function getSchedule() {
       const storedIsLogin = sessionStorage.getItem("isLogin");
       setUserIsLogIn(storedIsLogin ? JSON.parse(storedIsLogin) : false);
-      const { schedules, users } = await GetRandomSchedule();
+      const { schedules, users, docID } = await GetRandomSchedule();
       await setSchedules(schedules);
       await setUsers(users);
+      await setDocID(docID);
     }
     getSchedule();
   }, []);
@@ -63,7 +65,7 @@ const Home = () => {
                   isHide={!userIsLogIn}
                   userInfo={users}
                   schedules={schedules}
-                  docID={""}
+                  docID={docID}
                   canAdjust={false}
                 />
               )}

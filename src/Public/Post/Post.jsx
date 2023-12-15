@@ -1,18 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import NodeLink from "../Node/NodeLink";
 import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import ArticleIcon from "@mui/icons-material/Article";
 import PostInfo from "./PostInfo";
+import Tooltip from "@mui/material/Tooltip";
+import { UpdatePostLike } from "../Database/UpdatePostLike.js";
+
 const iconStyle = {
   fontSize: "30px",
-  marginLeft: "4px",
+  marginLeft: "15px",
   marginRight: "15px",
   cursor: "pointer",
 };
 
-const Post = ({ userInfo, isHide, schedule, canAdjust }) => {
+const Post = ({ userInfo, docID, isHide, schedule, canAdjust }) => {
+  const [likes, setLikes] = useState(schedule.likes);
+  const [isLike, setIsLike] = useState(schedule.isLike);
+
+  const handleLike = () => {
+    isLike ? setLikes(likes - 1) : setLikes(likes + 1);
+    setIsLike(!isLike);
+  };
+
+  useEffect(() => {
+    UpdatePostLike(schedule, docID, likes, isLike);
+  }, [likes]);
+
   return (
     <Card
       sx={{
@@ -20,7 +35,6 @@ const Post = ({ userInfo, isHide, schedule, canAdjust }) => {
         display: "flex",
         flexDirection: "column",
         paddingLeft: "30px",
-        paddingRight: "30px",
         width: "100%",
       }}
     >
@@ -32,33 +46,40 @@ const Post = ({ userInfo, isHide, schedule, canAdjust }) => {
       >
         <PostInfo userInfo={userInfo} />
         <NodeLink nodeNum={5} schedule={schedule} canAdjust={canAdjust} />
-      </Box>
-      {isHide ? (
-        ""
-      ) : (
-        <Box
-          sx={{
-            width: "100%",
-            height: "50px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "end",
-          }}
-        >
+        {isHide ? (
+          ""
+        ) : (
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
-              justifyContent: "end",
+              justifyContent: "center",
+              borderLeft: "1px solid #d8d8d8",
             }}
           >
-            123
-            <FavoriteBorderIcon style={iconStyle} />
-            123
-            <ChatBubbleOutlineIcon style={iconStyle} />
+            <Box
+              sx={{
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "space-around",
+              }}
+            >
+              <Tooltip title={likes} placement="right">
+                <FavoriteIcon
+                  style={iconStyle}
+                  onClick={handleLike}
+                  color={isLike ? "error" : ""}
+                />
+              </Tooltip>
+              <Tooltip title={schedule.commentsLen} placement="right">
+                <ArticleIcon style={iconStyle} />
+              </Tooltip>
+            </Box>
           </Box>
-        </Box>
-      )}
+        )}
+      </Box>
     </Card>
   );
 };

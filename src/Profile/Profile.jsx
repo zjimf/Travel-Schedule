@@ -11,7 +11,6 @@ import Typography from "@mui/material/Typography";
 import User from "./User.jsx";
 import { GetUID } from "../Public/Database/GetUID.js";
 import { GetSchedule } from "../Public/Database/GetSchedule.js";
-import { GetUserInfo } from "../Public/Database/GetUserInfo.js";
 import LinearProgress from "@mui/material/LinearProgress";
 
 const Profile = () => {
@@ -60,7 +59,7 @@ const Profile = () => {
                 <LinearProgress />
               ) : (
                 <PostContainer
-                  isHide={true}
+                  isHide={false}
                   userInfo={userInfo}
                   schedules={schedules}
                   docID={docID}

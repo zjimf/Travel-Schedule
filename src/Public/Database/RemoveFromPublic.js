@@ -1,10 +1,8 @@
-import { doc, setDoc, deleteDoc } from "firebase/firestore";
+import { doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { db } from "../../config/firebase-config";
 
 async function RemoveFromPublic(schedule, docID) {
-  schedule.isPublic = false;
-
-  await setDoc(doc(db, "Schedule", docID), schedule);
+  await updateDoc(doc(db, "Schedule", docID), { isPublic: false });
   await deleteDoc(doc(db, "PublicSchedule", docID));
 }
 

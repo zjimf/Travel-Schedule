@@ -1,11 +1,11 @@
-import { doc, setDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../config/firebase-config";
 
 async function MoveToPublic(schedule, docID) {
   schedule.isPublic = true;
 
-  await setDoc(doc(db, "Schedule", docID), schedule);
-  await setDoc(doc(db, "PublicSchedule", docID), schedule);
+  await updateDoc(doc(db, "Schedule", docID), { isPublic: true });
+  await updateDoc(doc(db, "PublicSchedule", docID), { isPublic: true });
 }
 
 export { MoveToPublic };

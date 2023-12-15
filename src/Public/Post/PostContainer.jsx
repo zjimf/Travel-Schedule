@@ -49,6 +49,7 @@ const PostContainer = ({ userInfo, docID, isHide, schedules, canAdjust }) => {
         >
           {docID === "" ? "" : <Share schedule={schedule} docID={docID[i]} />}
           <Post
+            docID={docID[i]}
             userInfo={userInfo[i]}
             isHide={isHide}
             schedule={schedule}
