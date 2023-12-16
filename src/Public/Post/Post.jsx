@@ -7,6 +7,7 @@ import LikeAndCommentContainer from "./LikeAndCommentContainer.jsx";
 import CommentContainer from "../Comments/CommentContainer.jsx";
 import { GetUID } from "../Database/GetUID";
 import { GetUserInfo } from "../Database/GetUserInfo";
+import Collapse from "@mui/material/Collapse";
 
 const Post = ({ userInfo, docID, isHide, schedule, canAdjust }) => {
   const [isHideCommentContainer, setIsHideCommentContainer] = useState(true);
@@ -49,13 +50,14 @@ const Post = ({ userInfo, docID, isHide, schedule, canAdjust }) => {
           />
         )}
       </Box>
-      {isHideCommentContainer || (
+
+      <Collapse in={isHideCommentContainer}>
         <CommentContainer
           userInfo={currentUser}
           docID={docID}
           schedule={schedule}
         />
-      )}
+      </Collapse>
     </Card>
   );
 };

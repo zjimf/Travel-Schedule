@@ -1,7 +1,9 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 import { FormatDate } from "../Methods/FormateDate";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 const Comment = ({ comment }) => {
   return (
     <>
@@ -9,13 +11,28 @@ const Comment = ({ comment }) => {
         <Grid item>
           <Avatar alt="Remy Sharp" src={comment.avatar} />
         </Grid>
-        <Grid justifyContent="left" item xs zeroMinWidth>
+        {/* <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            width: "90%",
+            margin: "0 0 0 35px",
+          }}
+        > */}
+        <Grid justifyContent="left" item zeroMinWidth>
           <h4 style={{ margin: 0, textAlign: "left" }}>{comment.name}</h4>
-          <p style={{ textAlign: "left", width: "85%" }}>{comment.comment}</p>
+          <p style={{ textAlign: "left" }}>{comment.comment}</p>
           <p style={{ textAlign: "left", color: "gray" }}>
             {FormatDate(comment.timeStamp.seconds * 1000)}
           </p>
         </Grid>
+        {/* <Grid>
+            <DeleteForeverIcon
+              sx={{ cursor: "pointer", fontSize: "30px !important" }}
+            />
+          </Grid> */}
+        {/* </Box> */}
       </Grid>
     </>
   );
