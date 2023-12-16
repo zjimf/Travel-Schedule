@@ -6,12 +6,11 @@ function getRandomInt(max) {
 async function RandomPointsGetRandomAttractions(begin, end, randomPoints) {
   let allAttractions = [];
   const pickFirstOne = [];
-  let cleanedBegin, cleanedEnd;
   for (const point of randomPoints) {
     const pickFive = [];
     try {
       const response = await axios.get(
-        `http://localhost:3001/api/getAttractions`,
+        `https://us-central1-ncusetravelschedule.cloudfunctions.net/app`,
         {
           params: {
             location: `${point.lat},${point.lng}`,

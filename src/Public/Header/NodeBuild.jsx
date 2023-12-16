@@ -4,9 +4,11 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
 
 const NodeBuild = () => {
   const [userIsLogIn, setUserIsLogIn] = useState(false);
+  let navigate = useNavigate();
 
   useEffect(() => {
     const storedIsLogin = sessionStorage.getItem("isLogin");
@@ -45,7 +47,7 @@ const NodeBuild = () => {
         <Button
           variant="contained"
           size="medium"
-          href={userIsLogIn ? "/nodeSchedule" : "/login"}
+          onClick={() => navigate(userIsLogIn ? "/nodeSchedule" : "/login")}
           style={{
             backgroundColor: "#a8e3c4",
             fontWeight: "bold",
