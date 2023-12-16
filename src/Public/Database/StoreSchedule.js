@@ -22,9 +22,7 @@ async function StoreSchedule(uid, finalNodes) {
     finalNodes: [],
     timeStamp: new Date(),
     isPublic: false,
-    likes: 0,
-    isLike: false,
-    commentsLen: 0,
+    likes: [],
     comments: [],
   };
 

@@ -1,7 +1,16 @@
 import React from "react";
+import Divider from "@mui/material/Divider";
 
-const Comments = () => {
-  return <div></div>;
+import Comment from "./Comment";
+
+const Comments = ({ docID, comments }) => {
+  console.log(comments);
+  return comments.map((comment, i) => (
+    <>
+      <Divider variant="fullWidth" style={{ margin: "0 0 30px 0" }} />
+      <Comment comment={comment} />
+    </>
+  ));
 };
 
 export default Comments;

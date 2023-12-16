@@ -4,15 +4,22 @@ import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Share from "./Share";
 import { useNavigate } from "react-router-dom";
-
 import Typography from "@mui/material/Typography";
 
-const PostContainer = ({ userInfo, docID, isHide, schedules, canAdjust }) => {
+const PostContainer = ({
+  isAtHome,
+  userInfo,
+  docID,
+  isHide,
+  schedules,
+  canAdjust,
+}) => {
   let navigate = useNavigate();
 
   const handleRedirect = () => {
     navigate("/nodeSchedule");
   };
+
   return (
     <Stack spacing={2}>
       {schedules.length === 0 ? (
@@ -47,7 +54,9 @@ const PostContainer = ({ userInfo, docID, isHide, schedules, canAdjust }) => {
             justifyContent: "space-around",
           }}
         >
-          {docID === "" ? "" : <Share schedule={schedule} docID={docID[i]} />}
+          {docID === "" || isAtHome || (
+            <Share schedule={schedule} docID={docID[i]} />
+          )}
           <Post
             docID={docID[i]}
             userInfo={userInfo[i]}

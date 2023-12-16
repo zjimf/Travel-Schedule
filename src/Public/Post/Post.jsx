@@ -1,13 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NodeLink from "../Node/NodeLink";
 import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import PostInfo from "./PostInfo";
 import LikeAndCommentContainer from "./LikeAndCommentContainer.jsx";
 import CommentContainer from "../Comments/CommentContainer.jsx";
+import { GetUID } from "../Database/GetUID";
+import { GetUserInfo } from "../Database/GetUserInfo";
 
 const Post = ({ userInfo, docID, isHide, schedule, canAdjust }) => {
   const [isHideCommentContainer, setIsHideCommentContainer] = useState(true);
+  const [currentUser, setCurrentUser] = useState({});
+  useEffect(() => {
+    async function getCurrentUser() {
+      const uid = await GetUID();
+      setCurrentUser(await GetUserInfo(uid));
+    }
+    getCurrentUser();
+  }, []);
+
   return (
     <Card
       sx={{
@@ -38,7 +49,13 @@ const Post = ({ userInfo, docID, isHide, schedule, canAdjust }) => {
           />
         )}
       </Box>
-      {isHideCommentContainer || <CommentContainer />}
+      {isHideCommentContainer || (
+        <CommentContainer
+          userInfo={currentUser}
+          docID={docID}
+          schedule={schedule}
+        />
+      )}
     </Card>
   );
 };

@@ -3,7 +3,8 @@ import Box from "@mui/material/Box";
 import Tooltip from "@mui/material/Tooltip";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ArticleIcon from "@mui/icons-material/Article";
-import { UpdatePostLike } from "../Database/UpdatePostLike.js";
+import { toggleLike } from "../Database/toggleLike.js";
+import { GetUID } from "../Database/GetUID.js";
 
 const iconStyle = {
   fontSize: "30px",
@@ -18,12 +19,16 @@ const LikeAndCommentContainer = ({
   isHideCommentContainer,
   setIsHideCommentContainer,
 }) => {
-  const [likes, setLikes] = useState(schedule.likes);
-  const [isLike, setIsLike] = useState(schedule.isLike);
+  const [likes, setLikes] = useState(schedule.likes.length);
+  const [isLike, setIsLike] = useState(false);
 
   const handleLike = () => {
-    isLike ? setLikes(likes - 1) : setLikes(likes + 1);
-    setIsLike(!isLike);
+    async function handleLikeEve() {
+      setIsLike(!isLike);
+      isLike ? setLikes(likes - 1) : setLikes(likes + 1);
+      await toggleLike(schedule, docID);
+    }
+    handleLikeEve();
   };
 
   const handleComment = () => {
@@ -31,8 +36,12 @@ const LikeAndCommentContainer = ({
   };
 
   useEffect(() => {
-    UpdatePostLike(schedule, docID, likes, isLike);
-  }, [likes]);
+    async function checkIsLike() {
+      const uid = await GetUID();
+      await setIsLike(schedule.likes.includes(uid));
+    }
+    checkIsLike();
+  }, []);
 
   return (
     <Box

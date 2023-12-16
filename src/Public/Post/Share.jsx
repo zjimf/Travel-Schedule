@@ -11,23 +11,23 @@ const Share = ({ schedule, docID }) => {
 
   const handleRemoveFromPublic = (schedule) => {
     setIsPublic(false);
-    RemoveFromPublic(schedule, docID);
+    RemoveFromPublic(docID);
   };
 
   const handleStoreInPublic = (schedule) => {
     setIsPublic(true);
-    MoveToPublic(schedule, docID);
+    MoveToPublic(docID);
   };
 
   return isPublic ? (
     <Tooltip title="REMOVE FROM GLOBAL" sx={{ marginRight: "20px" }}>
-      <IconButton onClick={() => handleRemoveFromPublic(schedule, docID)}>
+      <IconButton onClick={() => handleRemoveFromPublic(docID)}>
         <CancelIcon sx={{ fontSize: "30px" }} />
       </IconButton>
     </Tooltip>
   ) : (
     <Tooltip title="SHARE TO GLOBAL" sx={{ marginRight: "20px" }}>
-      <IconButton onClick={() => handleStoreInPublic(schedule, docID)}>
+      <IconButton onClick={() => handleStoreInPublic(docID)}>
         <ShareIcon sx={{ fontSize: "30px" }} />
       </IconButton>
     </Tooltip>
