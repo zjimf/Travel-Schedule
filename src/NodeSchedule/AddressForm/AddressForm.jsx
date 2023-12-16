@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import SearchBox from "../../Public/Map/SearchBox";
@@ -15,10 +15,40 @@ const AddressForm = ({
   setNodeNum,
 }) => {
   const inputRef = useRef(null);
+  const [isValid, setIsValid] = useState(true);
+  const [beginIsValid, setBeginIsValid] = useState(true);
+  const [endIsValid, setEndIsValid] = useState(true);
 
   useEffect(() => {
-    if (begin !== null && end !== null && nodeNum != null) setIsAllFilled(true);
-  }, [begin, end, nodeNum]);
+    setBegin(null);
+    setEnd(null);
+    setNodeNum(null);
+    setIsAllFilled(false);
+  }, []);
+
+  useEffect(() => {
+    if (begin !== null)
+      begin.formatted_address.includes("台灣")
+        ? setBeginIsValid(true)
+        : setBeginIsValid(false);
+
+    if (end !== null)
+      end.formatted_address.includes("台灣")
+        ? setEndIsValid(true)
+        : setEndIsValid(false);
+
+    begin !== null && end !== null && nodeNum !== null && isValid
+      ? setIsAllFilled(true)
+      : setIsAllFilled(false);
+  }, [begin, end, nodeNum, isValid]);
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    const isValidNumber = /^\d+$/.test(value) && value >= 1 && value <= 10;
+
+    setIsValid(isValidNumber);
+    setNodeNum(isValidNumber ? value : null);
+  };
 
   return (
     <>
@@ -29,19 +59,27 @@ const AddressForm = ({
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <SearchBox isBegin={true} setLocation={setBegin} />
+          <SearchBox
+            isBegin={true}
+            setLocation={setBegin}
+            isValid={beginIsValid}
+          />
         </Grid>
         <Grid item xs={12}>
           <Typography variant="h5" component="h2">
-            {begin ? begin.formatted_address : ""}
+            {begin && beginIsValid ? begin.formatted_address : "-"}
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <SearchBox isBegin={false} setLocation={setEnd} />
+          <SearchBox
+            isBegin={false}
+            setLocation={setEnd}
+            isValid={endIsValid}
+          />
         </Grid>
         <Grid item xs={12}>
-          <Typography variant="h5" component="h2">
-            {end ? end.formatted_address : ""}
+          <Typography variant="h5">
+            {end && endIsValid ? end.formatted_address : "-"}
           </Typography>
         </Grid>
         <Grid item xs={12}>
@@ -58,9 +96,11 @@ const AddressForm = ({
             variant="outlined"
             type="text"
             inputRef={inputRef}
-            onChange={(e) => {
-              setNodeNum(e.target.value);
-            }}
+            onChange={handleInputChange}
+            error={!isValid}
+            helperText={
+              isValid || "Please enter a valid number between 1 and 10"
+            }
           />
         </Grid>
       </Grid>

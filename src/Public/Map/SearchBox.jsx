@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import TextField from "@mui/material/TextField";
 import { initAutocomplete } from "../Methods/initAutocomplete.ts";
-const SearchBox = ({ isBegin, setLocation }) => {
+const SearchBox = ({ isBegin, setLocation, isValid }) => {
   const inputRef = useRef(null);
   useEffect(() => {
     initAutocomplete(inputRef.current, setLocation);
@@ -17,6 +17,8 @@ const SearchBox = ({ isBegin, setLocation }) => {
         type="text"
         placeholder="Search Box"
         inputRef={inputRef}
+        error={!isValid}
+        helperText={isValid || "請輸入台灣地址"}
       />
     </>
   );

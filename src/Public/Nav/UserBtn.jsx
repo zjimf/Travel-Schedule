@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@mui/material/Button";
 import { getAuth, signOut } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MenuItem from "@mui/material/MenuItem";
@@ -9,6 +9,7 @@ import Menu from "@mui/material/Menu";
 const UserBtn = (props) => {
   const auth = getAuth();
   let navigate = useNavigate();
+  const location = useLocation();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -18,6 +19,17 @@ const UserBtn = (props) => {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleGoProfile = () => {
+    if (location.pathname === "/nodeSchedule") {
+      const userConfirmed = window.confirm(
+        "Are you sure you want to go back? Any unsaved changes will be lost."
+      );
+      if (userConfirmed) navigate("/profile");
+    } else {
+      navigate("/profile");
+    }
   };
   return (
     <div>
@@ -38,7 +50,7 @@ const UserBtn = (props) => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={() => navigate("/profile")}>Profile</MenuItem>
+        <MenuItem onClick={handleGoProfile}>Profile</MenuItem>
         <MenuItem>
           <Button
             variant="contained"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Header from "../Public/Nav/Header";
@@ -40,7 +40,14 @@ const NodeSchedule = () => {
   };
 
   const handleBack = () => {
-    setActiveStep(activeStep - 1);
+    const confirmBack = window.confirm(
+      "Are you sure you want to go back? Any unsaved changes will be lost."
+    );
+
+    if (confirmBack) {
+      setActiveStep(activeStep - 1);
+      setIsAllFilled(false);
+    }
   };
 
   return (

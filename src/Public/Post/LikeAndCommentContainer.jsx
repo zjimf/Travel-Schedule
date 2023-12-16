@@ -68,7 +68,7 @@ const LikeAndCommentContainer = ({
             color={isLike ? "error" : ""}
           />
         </Tooltip>
-        <Tooltip title={schedule.commentsLen} placement="right">
+        <Tooltip title={""} placement="right">
           <ArticleIcon style={iconStyle} onClick={handleComment} />
         </Tooltip>
       </Box>

@@ -51,7 +51,7 @@ const Post = ({ userInfo, docID, isHide, schedule, canAdjust }) => {
         )}
       </Box>
 
-      <Collapse in={isHideCommentContainer}>
+      <Collapse in={!isHideCommentContainer}>
         <CommentContainer
           userInfo={currentUser}
           docID={docID}
