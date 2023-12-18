@@ -4,6 +4,7 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
+import DeleteAccountBtn from "./DeleteAccountBtn";
 
 const User = ({ userInfo }) => {
   return (
@@ -46,9 +47,8 @@ const User = ({ userInfo }) => {
           Change User Information
         </Button>
         <Button variant="outlined">Change Password</Button>
-        <Button variant="outlined" color="error">
-          Delete Account
-        </Button>
+
+        <DeleteAccountBtn />
       </Stack>
     </Card>
   );
