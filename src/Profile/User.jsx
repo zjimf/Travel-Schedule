@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 import DeleteAccountBtn from "./DeleteAccountBtn";
-
+import ChangePasswordBtn from "./ChangePasswordBtn";
 const User = ({ userInfo }) => {
   return (
     <Card
@@ -46,7 +46,8 @@ const User = ({ userInfo }) => {
         <Button variant="outlined" sx={{ color: "gray", borderColor: "gray" }}>
           Change User Information
         </Button>
-        <Button variant="outlined">Change Password</Button>
+
+        <ChangePasswordBtn />
 
         <DeleteAccountBtn />
       </Stack>
