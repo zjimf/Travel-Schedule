@@ -75,14 +75,30 @@ const LogIn = () => {
           </Button>
           <Grid container justifyContent="space-between">
             <Grid item>
-              <Link href="./forgot" variant="body2">
+              <Typography
+                onClick={() => navigate("/forgot")}
+                variant="body2"
+                sx={{
+                  color: "#1976d2",
+                  cursor: "pointer",
+                  textDecoration: "underline",
+                }}
+              >
                 {"Forget password"}
-              </Link>
+              </Typography>
             </Grid>
             <Grid item>
-              <Link href="./SignUp" variant="body2">
+              <Typography
+                onClick={() => navigate("/Signup")}
+                variant="body2"
+                sx={{
+                  color: "#1976d2",
+                  cursor: "pointer",
+                  textDecoration: "underline",
+                }}
+              >
                 {"Don't have an account yet? Register"}
-              </Link>
+              </Typography>
             </Grid>
           </Grid>
         </Box>

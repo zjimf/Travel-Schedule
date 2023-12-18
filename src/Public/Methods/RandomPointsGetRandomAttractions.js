@@ -8,12 +8,18 @@ async function RandomPointsGetRandomAttractions(begin, end, randomPoints) {
   const pickFirstOne = [];
   for (const point of randomPoints) {
     const pickFive = [];
+
+    const data = {
+      location: `${point.lat},${point.lng}`,
+    };
     try {
-      const response = await axios.get(
-        `https://us-central1-ncusetravelschedule.cloudfunctions.net/app`,
+      const response = await axios.post(
+        // `https://us-central1-ncusetravelschedule.cloudfunctions.net/app`,
+        "https://f620-101-10-10-164.ngrok-free.app",
+        JSON.stringify(data),
         {
-          params: {
-            location: `${point.lat},${point.lng}`,
+          headers: {
+            "Content-Type": "application/json",
           },
         }
       );
