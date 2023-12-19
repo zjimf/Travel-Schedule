@@ -1,7 +1,6 @@
 import React from "react";
 import Card from "@mui/material/Card";
 import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 import ChangeUserInfoBtn from "./ChangeUserInfoBtn";
@@ -30,8 +29,9 @@ const User = ({ userInfo }) => {
       >
         <Avatar
           src={
-            userInfo.avatar === undefined ||
-            require(`../Public/Images/avatar/avatar${userInfo.avatar}.png`)
+            userInfo.avatar === "" || userInfo.avatar === undefined
+              ? ""
+              : require(`../Public/Images/avatar/avatar${userInfo.avatar}.png`)
           }
         ></Avatar>
         <Typography
@@ -49,9 +49,13 @@ const User = ({ userInfo }) => {
         flexWrap="wrap"
         sx={{ margin: "30px 0px 30px 0px" }}
       >
-        <ChangeUserInfoBtn userInfo={userInfo} />
-        <ChangePasswordBtn />
-        <DeleteAccountBtn />
+        {Object.keys(userInfo).length === 0 || (
+          <>
+            <ChangeUserInfoBtn userInfo={userInfo} />
+            <ChangePasswordBtn />
+            <DeleteAccountBtn />
+          </>
+        )}
       </Stack>
     </Card>
   );

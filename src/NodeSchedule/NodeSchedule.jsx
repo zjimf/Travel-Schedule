@@ -25,6 +25,7 @@ const NodeSchedule = () => {
   const [nodeNum, setNodeNum] = useState(null);
   const [finalNodes, setFinalNodes] = useState();
   const [isClick, setIsClick] = useState(false);
+  const [userIsLogIn, setUserIsLogIn] = useState(true);
   const navigate = useNavigate();
 
   const handleNext = () => {
@@ -49,6 +50,15 @@ const NodeSchedule = () => {
       setIsAllFilled(false);
     }
   };
+
+  useEffect(() => {
+    const storedIsLogin = sessionStorage.getItem("isLogin");
+    setUserIsLogIn(storedIsLogin ? JSON.parse(storedIsLogin) : false);
+  }, []);
+
+  useEffect(() => {
+    if (!userIsLogIn) navigate("/login");
+  }, [userIsLogIn]);
 
   return (
     <>

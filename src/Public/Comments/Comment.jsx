@@ -11,8 +11,9 @@ const Comment = ({ comment }) => {
           <Avatar
             alt="Remy Sharp"
             src={
-              comment.avatar === undefined ||
-              require(`../../Public/Images/avatar/avatar${comment.avatar}.png`)
+              comment.avatar === "" || comment.avatar === undefined
+                ? ""
+                : require(`../../Public/Images/avatar/avatar${comment.avatar}.png`)
             }
           />
         </Grid>
