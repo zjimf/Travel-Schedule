@@ -12,13 +12,20 @@ import User from "./User.jsx";
 import { GetUID } from "../Public/Database/GetUID.js";
 import { GetSchedule } from "../Public/Database/GetSchedule.js";
 import LinearProgress from "@mui/material/LinearProgress";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const [schedules, setSchedule] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
   const [docID, setDocID] = useState("");
+  const [userIsLogIn, setUserIsLogIn] = useState(true);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
+    const storedIsLogin = sessionStorage.getItem("isLogin");
+    setUserIsLogIn(storedIsLogin ? JSON.parse(storedIsLogin) : false);
+
     async function getSchedule() {
       const uid = await GetUID();
       const { docID, schedules, users } = await GetSchedule(uid);
@@ -28,6 +35,10 @@ const Profile = () => {
     }
     getSchedule();
   }, []);
+
+  useEffect(() => {
+    if (!userIsLogIn) navigate("/login");
+  }, [userIsLogIn]);
 
   return (
     <main style={{ backgroundColor: "#f3f4f9" }}>
@@ -53,7 +64,7 @@ const Profile = () => {
                 }}
               >
                 <Typography variant="h5">Your Schedules</Typography>
-                <ToolBox />
+                {/* <ToolBox /> */}
               </Box>
               {docID === "" ? (
                 <LinearProgress />
