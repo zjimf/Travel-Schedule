@@ -15,7 +15,7 @@ async function RandomPointsGetRandomAttractions(begin, end, randomPoints) {
     try {
       const response = await axios.post(
         // `https://us-central1-ncusetravelschedule.cloudfunctions.net/app`,
-        "https://f620-101-10-10-164.ngrok-free.app",
+        "https://1266-140-115-80-251.ngrok-free.app",
         JSON.stringify(data),
         {
           headers: {

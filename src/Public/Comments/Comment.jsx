@@ -1,6 +1,5 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 import { FormatDate } from "../Methods/FormateDate";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
@@ -9,7 +8,13 @@ const Comment = ({ comment }) => {
     <>
       <Grid container wrap="nowrap" spacing={2} sx={{ marginX: "20px" }}>
         <Grid item>
-          <Avatar alt="Remy Sharp" src={comment.avatar} />
+          <Avatar
+            alt="Remy Sharp"
+            src={
+              comment.avatar === undefined ||
+              require(`../../Public/Images/avatar/avatar${comment.avatar}.png`)
+            }
+          />
         </Grid>
         {/* <Box
           sx={{

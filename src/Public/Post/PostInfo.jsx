@@ -14,7 +14,12 @@ const PostInfo = ({ userInfo }) => {
       flexWrap="wrap"
       sx={{ margin: "30px 0px 30px 0px", width: "350px" }}
     >
-      <Avatar src={userInfo.avatar}></Avatar>
+      <Avatar
+        src={
+          userInfo.avatar === "" ||
+          require(`../../Public/Images/avatar/avatar${userInfo.avatar}.png`)
+        }
+      ></Avatar>
       <Typography
         sx={{ fontSize: 20, whiteSpace: "normal", fontWeight: "bold" }}
       >
