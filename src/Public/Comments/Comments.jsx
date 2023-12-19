@@ -7,7 +7,7 @@ const Comments = ({ docID, comments }) => {
   return comments.map((comment, i) => (
     <>
       <Divider variant="fullWidth" style={{ margin: "0 0 30px 0" }} />
-      <Comment comment={comment} />
+      <Comment docID={docID} comment={comment} index={i} />
     </>
   ));
 };
