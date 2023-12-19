@@ -16,8 +16,9 @@ const PostInfo = ({ userInfo }) => {
     >
       <Avatar
         src={
-          userInfo.avatar === "" ||
-          require(`../../Public/Images/avatar/avatar${userInfo.avatar}.png`)
+          userInfo.avatar === "" || userInfo.avatar === undefined
+            ? ""
+            : require(`../../Public/Images/avatar/avatar${userInfo.avatar}.png`)
         }
       ></Avatar>
       <Typography
