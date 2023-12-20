@@ -1,47 +1,45 @@
 import * as React from "react";
-import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
+import LinkIcon from "@mui/icons-material/Link";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const images = [
   {
-    label: "San Francisco – Oakland Bay Bridge, United States",
-    imgPath:
-      "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
+    link: "https://travelcom.com.tw/nantou221229/",
+    imgPath: require("../Images/new/news1.jpg"),
   },
   {
-    label: "Bird",
-    imgPath:
-      "https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60",
+    link: "https://www.klook.com/zh-TW/activity/1659-taipei-101-taipei/",
+    imgPath: require("../Images/new/news2.jpg"),
   },
   {
-    label: "Bali, Indonesia",
-    imgPath:
-      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250",
-  },
-  {
-    label: "Goč, Serbia",
-    imgPath:
-      "https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60",
+    link: "https://www.businesstoday.com.tw/article/category/183031/post/202305150033/",
+    imgPath: require("../Images/new/news3.jpg"),
   },
 ];
 
 const News = () => {
   const [activeStep, setActiveStep] = React.useState(0);
+
   const handleStepChange = (step) => {
     setActiveStep(step);
+  };
+
+  const handleBoxClick = (url) => {
+    window.open(url, "_blank");
   };
 
   return (
     <Box
       sx={{
-        height: "100%",
+        position: "relative",
+        height: "270px",
         borderRadius: "10px",
         boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px",
-        backGroundColor: "red",
+        overflow: "hidden",
       }}
     >
       <AutoPlaySwipeableViews
@@ -52,21 +50,39 @@ const News = () => {
         {images.map((step, index) => (
           <div key={step.label}>
             {Math.abs(activeStep - index) <= 2 ? (
-              <Box
-                component="img"
-                sx={{
-                  display: "block",
-                  overflow: "hidden",
-                  borderRadius: "10px",
-                  // width: "100%",
-                }}
-                src={step.imgPath}
-                alt={step.label}
-              />
+              <>
+                <Box
+                  component="img"
+                  sx={{
+                    height: "100%",
+                    width: "100%",
+                    objectFit: "cover",
+                    marginTop: "-50px",
+                  }}
+                  src={step.imgPath}
+                />
+              </>
             ) : null}
           </div>
         ))}
       </AutoPlaySwipeableViews>
+      <Box
+        sx={{
+          position: "absolute",
+          top: 0,
+          right: 0,
+          cursor: "pointer",
+          backgroundColor: "white",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "2px",
+          borderRadius: "0px 10px 0px 10px",
+          boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px",
+        }}
+      >
+        <LinkIcon onClick={() => handleBoxClick(images[activeStep].link)} />
+      </Box>
     </Box>
   );
 };

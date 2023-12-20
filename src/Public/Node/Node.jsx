@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
+import Zoom from "@mui/material/Zoom";
 
-function Node({ index, len, begin, end, finalNodes, canAdjust }) {
+function Node({ index, len, begin, end, finalNodes, canAdjust, delay }) {
   const [info, setInfo] = useState("");
   useEffect(() => {
     if (index === 0) setInfo(begin ? begin.formatted_address : "-");
@@ -21,20 +22,25 @@ function Node({ index, len, begin, end, finalNodes, canAdjust }) {
       );
   }, [begin, end, finalNodes]);
   return (
-    <Box
-      sx={{
-        border: "2px solid black",
-        width: "120px",
-        height: "120px",
-        borderRadius: "120px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        textAlign: "center",
-      }}
-    >
-      {info}
-    </Box>
+    <Zoom in={true} style={{ transitionDelay: `${delay}ms` }}>
+      <Box
+        sx={{
+          width: "120px",
+          height: "120px",
+          borderRadius: "10px",
+          margin: "10px",
+          padding: "5px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
+          overflow: "hidden",
+          boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+        }}
+      >
+        {info}
+      </Box>
+    </Zoom>
   );
 }
 

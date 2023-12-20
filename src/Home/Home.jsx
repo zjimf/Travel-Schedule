@@ -6,7 +6,6 @@ import Header from "../Public/Nav/Header.jsx";
 import Footer from "../Public/Footer/Footer.jsx";
 import News from "../Public/Header/News.jsx";
 import NodeBuild from "../Public/Header/NodeBuild.jsx";
-import ToolBox from "../Public/Post/ToolBox.jsx";
 import PostContainer from "../Public/Post/PostContainer.jsx";
 import { GetRandomSchedule } from "../Public/Database/GetRandomSchedule.js";
 import LinearProgress from "@mui/material/LinearProgress";
@@ -53,7 +52,6 @@ const Home = () => {
             }}
           >
             <Grid item xs={12} justifyContent="center">
-              {/* <ToolBox /> */}
               {users.length === 0 ? (
                 <LinearProgress />
               ) : (

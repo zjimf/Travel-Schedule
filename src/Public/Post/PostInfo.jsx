@@ -12,7 +12,7 @@ const PostInfo = ({ userInfo }) => {
       justifyContent="start"
       useFlexGap
       flexWrap="wrap"
-      sx={{ margin: "30px 0px 30px 0px", width: "350px" }}
+      sx={{ margin: "30px 0px 30px 0px", width: "200px" }}
     >
       <Avatar
         src={

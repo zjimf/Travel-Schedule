@@ -10,7 +10,6 @@ import { GetUserInfo } from "../Database/GetUserInfo";
 import Collapse from "@mui/material/Collapse";
 
 const Post = ({ userInfo, docID, isHide, schedule, canAdjust }) => {
-  console.log(docID);
   const [isHideCommentContainer, setIsHideCommentContainer] = useState(true);
   const [currentUser, setCurrentUser] = useState({});
   useEffect(() => {
@@ -28,6 +27,7 @@ const Post = ({ userInfo, docID, isHide, schedule, canAdjust }) => {
         display: "flex",
         flexDirection: "column",
         width: "100%",
+        flexWrap: "true",
       }}
     >
       <Box

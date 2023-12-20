@@ -44,6 +44,7 @@ const AdjustmentNodeLink = ({
               end={end}
               finalNodes={fiveAttractions === [] ? [] : fiveAttractions}
               canAdjust={true}
+              delay={index * 300}
             />
             {fiveAttractions[index] !== undefined ? (
               <AltNode

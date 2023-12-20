@@ -65,7 +65,12 @@ const Profile = () => {
                   justifyContent: "space-between",
                 }}
               >
-                <Typography variant="h5">Your Schedules</Typography>
+                <Typography
+                  variant="h5"
+                  sx={{ marginBottom: "15px", fontWeight: "bold" }}
+                >
+                  Your Schedules
+                </Typography>
                 {/* <ToolBox /> */}
               </Box>
               {docID === "" ? (
