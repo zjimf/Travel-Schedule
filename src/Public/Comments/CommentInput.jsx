@@ -1,21 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import InputAdornment from "@mui/material/InputAdornment";
 import SendIcon from "@mui/icons-material/Send";
 import { StoreComment } from "../Database/StoreComment";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const CommentInput = ({ userInfo, docID, schedule, setComments }) => {
   const [comment, setComment] = useState("");
-
-  const [hover, setHover] = useState(false);
+  const [canClick, setCanClick] = useState(false);
+  const [sending, setSending] = useState(false);
 
   const handleSend = async () => {
+    if (comment === "") return;
+
+    setSending(true);
     const newComment = await StoreComment(comment, userInfo, docID, schedule);
     await setComments((prevComments) => [...prevComments, newComment]);
+
     setComment("");
+    setSending(false);
   };
+
+  const handleType = (e) => {
+    setComment(e.target.value);
+  };
+
+  useEffect(() => {
+    comment === "" ? setCanClick(false) : setCanClick(true);
+  }, [comment]);
 
   return (
     <Box
@@ -32,17 +46,20 @@ const CommentInput = ({ userInfo, docID, schedule, setComments }) => {
         label="Input comment"
         variant="standard"
         value={comment}
-        onChange={(e) => setComment(e.target.value)}
+        onChange={handleType}
         InputProps={{
           endAdornment: (
             <InputAdornment>
-              <SendIcon
-                onMouseEnter={() => setHover(true)}
-                onMouseLeave={() => setHover(false)}
-                sx={{ cursor: "pointer" }}
-                style={{ color: !hover || "#1976D2" }}
-                onClick={handleSend}
-              />
+              {sending ? (
+                <CircularProgress />
+              ) : (
+                <SendIcon
+                  disabled={!canClick}
+                  sx={{ cursor: "pointer" }}
+                  style={{ color: !canClick || "#1976D2" }}
+                  onClick={handleSend}
+                />
+              )}
             </InputAdornment>
           ),
         }}
