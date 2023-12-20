@@ -6,8 +6,11 @@ const GetRandomSchedule = async () => {
   // 擷取 "PublicSchedule" 集合中的所有文件
   const querySnapshot = await getDocs(collection(db, "PublicSchedule"));
 
-  // 將所有文件轉換為數組
-  const allSchedules = querySnapshot.docs.map((document) => document.data());
+  // 將所有文件轉換為包含數據和文檔ID的對象
+  const allSchedules = querySnapshot.docs.map((doc) => ({
+    ...doc.data(),
+    docID: doc.id,
+  }));
 
   // 隨機挑選五個日程
   const randomSchedules = getRandomItems(allSchedules, 5);
@@ -21,13 +24,9 @@ const GetRandomSchedule = async () => {
   const users = await Promise.all(userPromises);
 
   // 取得隨機日程的文件ID
-  const docID = querySnapshot.docs
-    .filter((doc) =>
-      randomSchedules.some((schedule) => schedule.uid === doc.data().uid)
-    )
-    .map((doc) => doc.id);
+  const docIDs = randomSchedules.map((schedule) => schedule.docID);
 
-  return { schedules: randomSchedules, users, docID };
+  return { schedules: randomSchedules, users, docID: docIDs };
 };
 
 // 函數來隨機挑選指定數量的項目
