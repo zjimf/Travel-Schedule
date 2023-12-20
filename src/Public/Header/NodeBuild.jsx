@@ -35,7 +35,7 @@ const NodeBuild = () => {
         <Typography variant="h4" color="#004a4f" sx={{ fontWeight: "bold" }}>
           準備好，
           <br />
-          來建立你的行程吧!
+          建立你的行程吧!
         </Typography>
         <Typography
           variant="body1"
@@ -49,7 +49,7 @@ const NodeBuild = () => {
           size="medium"
           onClick={() => navigate(userIsLogIn ? "/nodeSchedule" : "/login")}
           style={{
-            backgroundColor: "#a8e3c4",
+            backgroundColor: "#9ee0bd",
             fontWeight: "bold",
             color: "#004a4f",
             fontSize: "15px",

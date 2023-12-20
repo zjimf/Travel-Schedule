@@ -35,8 +35,9 @@ const LogIn = () => {
       >
         <Avatar
           sx={{ width: 150, height: 150, m: 2, bgcolor: "secondary.main" }}
+          src={require("../Public/Images/Logo.jpg")}
         />
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" sx={{ fontWeight: "bold" }}>
           Travel Schedule
         </Typography>
         <Box
