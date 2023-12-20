@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const [schedules, setSchedule] = useState([]);
+  const [usersInfo, setUsersInfo] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
   const [docID, setDocID] = useState("");
   const [userIsLogIn, setUserIsLogIn] = useState(true);
@@ -28,10 +29,11 @@ const Profile = () => {
 
     async function getSchedule() {
       const uid = await GetUID();
-      const { docID, schedules, users } = await GetSchedule(uid);
+      const { docID, schedules, user, users } = await GetSchedule(uid);
       await setSchedule(schedules);
       await setDocID(docID);
-      await setUserInfo(users);
+      await setUsersInfo(users);
+      await setUserInfo(user);
     }
     getSchedule();
   }, []);
@@ -46,7 +48,7 @@ const Profile = () => {
       <Header />
       <main style={{ marginTop: "50px" }}>
         <Container maxWidth="xl">
-          <User userInfo={userInfo.length === 0 ? {} : userInfo[0]} />
+          <User userInfo={usersInfo.length === 0 ? userInfo : usersInfo[0]} />
           <Grid
             container
             spacing={4}
@@ -71,7 +73,7 @@ const Profile = () => {
               ) : (
                 <PostContainer
                   isHide={false}
-                  userInfo={userInfo}
+                  userInfo={usersInfo}
                   schedules={schedules}
                   docID={docID}
                   canAdjust={false}

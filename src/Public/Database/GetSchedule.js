@@ -15,7 +15,7 @@ const GetSchedule = async (uid) => {
     schedules.push(doc.data());
     users.push(user);
   });
-  return { docID, schedules, users };
+  return { docID, schedules, user, users };
 };
 
 export { GetSchedule };
