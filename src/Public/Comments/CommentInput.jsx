@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import AccountCircle from "@mui/icons-material/AccountCircle";
+import Avatar from "@mui/material/Avatar";
 import InputAdornment from "@mui/material/InputAdornment";
 import SendIcon from "@mui/icons-material/Send";
 import { StoreComment } from "../Database/StoreComment";
@@ -40,7 +40,14 @@ const CommentInput = ({ userInfo, docID, schedule, setComments }) => {
         marginX: "15px",
       }}
     >
-      <AccountCircle sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+      <Avatar
+        src={
+          userInfo.avatar === "" || userInfo.avatar === undefined
+            ? ""
+            : require(`../Images/avatar/avatar${userInfo.avatar}.png`)
+        }
+        sx={{ width: "30px", height: "30px", mr: 1, my: 0.5 }}
+      />
       <TextField
         id="input-with-sx"
         label="Input comment"
