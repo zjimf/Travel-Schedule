@@ -50,7 +50,7 @@ const ChangeUserInfoBtn = ({ userInfo }) => {
         onClick={handleClickOpen}
         sx={{ color: "gray", borderColor: "gray" }}
       >
-        Change User Information
+        更改用戶資訊
       </Button>
       <Dialog
         open={open}

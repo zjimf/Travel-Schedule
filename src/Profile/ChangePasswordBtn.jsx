@@ -75,7 +75,7 @@ const ChangePasswordBtn = () => {
   return (
     <>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Change Password
+        更改密碼
       </Button>
       <Dialog
         open={open}

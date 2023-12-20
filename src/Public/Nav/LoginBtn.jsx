@@ -14,7 +14,7 @@ const LoginBtn = (props) => {
         navigate("/login");
       }}
     >
-      Log in
+      登入
     </Button>
   );
 };

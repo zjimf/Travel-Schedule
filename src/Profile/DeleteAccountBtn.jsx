@@ -56,7 +56,7 @@ const DeleteAccountBtn = () => {
   return (
     <>
       <Button variant="outlined" color="error" onClick={handleClickOpen}>
-        Delete Account
+        刪除帳號
       </Button>
       <Dialog
         open={open}

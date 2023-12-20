@@ -55,7 +55,7 @@ const AddressForm = ({
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Typography variant="h5" gutterBottom>
-            Start / End points
+            請輸入起點與終點
           </Typography>
         </Grid>
         <Grid item xs={12}>
@@ -87,7 +87,7 @@ const AddressForm = ({
         </Grid>
         <Grid item xs={12}>
           <Typography variant="h5" component="h2">
-            The number of nodes you want
+            你想在起點與終點中塞入幾個節點
           </Typography>
         </Grid>
         <Grid item xs={12}>
@@ -98,9 +98,7 @@ const AddressForm = ({
             inputRef={inputRef}
             onChange={handleInputChange}
             error={!isValid}
-            helperText={
-              isValid || "Please enter a valid number between 1 and 10"
-            }
+            helperText={isValid || "請輸入範圍1到10的數字"}
           />
         </Grid>
       </Grid>

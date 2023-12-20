@@ -24,7 +24,7 @@ const UserBtn = (props) => {
   const handleGoProfile = () => {
     if (location.pathname === "/nodeSchedule") {
       const userConfirmed = window.confirm(
-        "Are you sure you want to go back? Any unsaved changes will be lost."
+        "你確定要離開本頁嗎? 所有資料將會遺失。"
       );
       if (userConfirmed) navigate("/profile");
     } else {
@@ -50,7 +50,7 @@ const UserBtn = (props) => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleGoProfile}>Profile</MenuItem>
+        <MenuItem onClick={handleGoProfile}>會員中心</MenuItem>
         <MenuItem>
           <Button
             variant="contained"
@@ -63,7 +63,7 @@ const UserBtn = (props) => {
               window.location.reload();
             }}
           >
-            Log out
+            登出
           </Button>
         </MenuItem>
       </Menu>

@@ -71,7 +71,7 @@ const LogIn = () => {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Login
+            登入
           </Button>
           <Grid container justifyContent="space-between">
             <Grid item>
@@ -84,7 +84,7 @@ const LogIn = () => {
                   textDecoration: "underline",
                 }}
               >
-                {"Forget password"}
+                {"忘記密碼"}
               </Typography>
             </Grid>
             <Grid item>
@@ -97,7 +97,7 @@ const LogIn = () => {
                   textDecoration: "underline",
                 }}
               >
-                {"Don't have an account yet? Register"}
+                {"還沒有帳戶？點擊即可註冊"}
               </Typography>
             </Grid>
           </Grid>

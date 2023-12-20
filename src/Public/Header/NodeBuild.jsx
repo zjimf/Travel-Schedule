@@ -33,16 +33,16 @@ const NodeBuild = () => {
         }}
       >
         <Typography variant="h4" color="#004a4f" sx={{ fontWeight: "bold" }}>
-          Let's go
-          <br /> Travel Schedule !
+          準備好，
+          <br />
+          來建立你的行程吧!
         </Typography>
         <Typography
           variant="body1"
           color="#52867f"
           sx={{ margin: "10px 0px " }}
         >
-          Enter the starting point and end point andschedule automatically,
-          which can also be customized.
+          輸入起點與終點，系統會自動生成行程，你也可以客製化其中的節點，快點擊下方按鈕建立專屬於你的行程吧！
         </Typography>
         <Button
           variant="contained"
@@ -52,9 +52,10 @@ const NodeBuild = () => {
             backgroundColor: "#a8e3c4",
             fontWeight: "bold",
             color: "#004a4f",
+            fontSize: "15px",
           }}
         >
-          Go now
+          建立行程
         </Button>
       </CardContent>
       <CardMedia

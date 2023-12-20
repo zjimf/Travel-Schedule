@@ -15,7 +15,7 @@ import { StoreSchedule } from "../Public/Database/StoreSchedule";
 import { useNavigate } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 
-const steps = ["Start / End points", "Adjustment"];
+const steps = ["起點 / 終點", "調整節點"];
 
 const NodeSchedule = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -42,7 +42,7 @@ const NodeSchedule = () => {
 
   const handleBack = () => {
     const confirmBack = window.confirm(
-      "Are you sure you want to go back? Any unsaved changes will be lost."
+      "你確定要離開本頁嗎? 所有資料將會遺失。"
     );
 
     if (confirmBack) {
@@ -70,7 +70,7 @@ const NodeSchedule = () => {
           sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
         >
           <Typography component="h1" variant="h4" align="center">
-            Customize your schedule
+            客製化您的行程
           </Typography>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
             {steps.map((label) => (
@@ -96,7 +96,7 @@ const NodeSchedule = () => {
             <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
               {activeStep !== 0 && (
                 <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                  Back
+                  上一步
                 </Button>
               )}
               {activeStep === steps.length - 1 ? (
@@ -109,7 +109,7 @@ const NodeSchedule = () => {
                   {isClick ? (
                     <CircularProgress color="inherit" sx={{ width: "5px" }} />
                   ) : (
-                    "Save"
+                    "儲存"
                   )}
                 </Button>
               ) : (
@@ -119,7 +119,7 @@ const NodeSchedule = () => {
                   sx={{ mt: 3, ml: 1 }}
                   disabled={!isAllFilled}
                 >
-                  Next
+                  下一步
                 </Button>
               )}
             </Box>

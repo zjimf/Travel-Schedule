@@ -10,7 +10,7 @@ const SearchBox = ({ isBegin, setLocation, isValid }) => {
   return (
     <>
       <TextField
-        label={`${isBegin ? "Start" : "End"}`}
+        label={`${isBegin ? "起點" : "終點"}`}
         variant="outlined"
         id="pac-input"
         className="controls"

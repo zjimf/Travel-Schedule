@@ -54,8 +54,7 @@ function Verify() {
         }}
       >
         <Typography variant="h5" component="div" gutterBottom>
-          Please click on the link in your mailbox to complete the verification
-          and continue to log in.
+          請點擊郵件中的驗證連結，然後進行登入。
         </Typography>
 
         <Button
@@ -65,7 +64,7 @@ function Verify() {
           onClick={resend}
           disableElevation
         >
-          Resend
+          重送驗證信
         </Button>
       </Box>
     </div>

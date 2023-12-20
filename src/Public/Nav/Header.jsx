@@ -13,7 +13,7 @@ const Header = () => {
   const handleBackHome = () => {
     if (location.pathname === "/nodeSchedule") {
       const userConfirmed = window.confirm(
-        "Are you sure you want to go back? Any unsaved changes will be lost."
+        "你確定要離開本頁嗎? 所有資料將會遺失。"
       );
       if (userConfirmed) navigate("/");
     } else {

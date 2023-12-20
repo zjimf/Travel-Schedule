@@ -35,7 +35,7 @@ const AdjustmentForm = ({
   return (
     <Box sx={{ overflow: "hidden" }}>
       <Typography variant="h6" gutterBottom>
-        Adjustments
+        調整各個節點
       </Typography>
       <AdjustmentNodeLink
         nodeNum={nodeNum}

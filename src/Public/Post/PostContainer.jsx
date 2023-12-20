@@ -38,7 +38,7 @@ const PostContainer = ({
             }}
             onClick={handleRedirect}
           >
-            Go build your Schedule
+            你尚未建立任何行程，來去建立！
           </Typography>
         </Box>
       ) : (

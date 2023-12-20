@@ -5,7 +5,6 @@ import PostContainer from "../Public/Post/PostContainer.jsx";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import ToolBox from "../Public/Post/ToolBox.jsx";
 import Footer from "../Public/Footer/Footer.jsx";
 import Typography from "@mui/material/Typography";
 import User from "./User.jsx";
@@ -69,9 +68,8 @@ const Profile = () => {
                   variant="h5"
                   sx={{ marginBottom: "15px", fontWeight: "bold" }}
                 >
-                  Your Schedules
+                  你的行程
                 </Typography>
-                {/* <ToolBox /> */}
               </Box>
               {docID === "" ? (
                 <LinearProgress />
