@@ -16,29 +16,41 @@ import {
 } from "firebase/auth";
 
 function SignUp() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   let navigate = useNavigate();
+
+  // 驗證電子郵件格式
+  const validateEmail = (email) => {
+    const re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  };
+
+  const canSubmit = name && validateEmail(email) && password.length >= 6;
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    setLoading(true);
+    if (!canSubmit) return; // 防止無效提交
 
+    setLoading(true);
     const auth = getAuth();
     try {
       const uid = await createUserWithEmailAndPassword(
         auth,
-        data.get("email"),
-        data.get("password")
+        email,
+        password
       ).then((res) => res.user.uid);
       await sendEmailVerification(auth.currentUser);
       await setLoading(false);
       return navigate("/verify", {
         state: {
           uid: uid,
-          name: data.get("name"),
-          email: data.get("email"),
+          name: name,
+          email: email,
         },
       });
     } catch (error) {
@@ -69,7 +81,7 @@ function SignUp() {
                 fullWidth
                 id="name"
                 label="姓名"
-                autoFocus
+                onChange={(e) => setName(e.target.value)}
               />
             </Grid>
 
@@ -80,6 +92,14 @@ function SignUp() {
                 label="Email"
                 name="email"
                 autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                error={!validateEmail(email) && email !== ""}
+                helperText={
+                  !validateEmail(email) && email !== ""
+                    ? "請輸入有效的電子郵件地址"
+                    : ""
+                }
               />
             </Grid>
             <Grid item xs={12}>
@@ -90,6 +110,14 @@ function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="new-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                error={password.length < 6 && password !== ""}
+                helperText={
+                  password.length < 6 && password !== ""
+                    ? "密碼至少需要6個字元"
+                    : ""
+                }
               />
             </Grid>
             <Grid item xs={12}>
@@ -101,6 +129,7 @@ function SignUp() {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
+            disabled={!canSubmit || loading}
           >
             {loading ? (
               <CircularProgress color="inherit" size="1.5rem" />
