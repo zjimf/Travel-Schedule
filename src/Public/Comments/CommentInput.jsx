@@ -50,7 +50,7 @@ const CommentInput = ({ userInfo, docID, schedule, setComments }) => {
       />
       <TextField
         id="input-with-sx"
-        label="Input comment"
+        label="輸入留言"
         variant="standard"
         value={comment}
         onChange={handleType}

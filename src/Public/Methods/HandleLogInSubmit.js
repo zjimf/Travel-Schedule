@@ -11,7 +11,7 @@ const HandleLogInSubmit = async (event, setError, navigateRef) => {
       navigateRef.current("/");
     })
     .catch((error) => {
-      setError("Account or password is wrong, Please try again！");
+      setError("帳號或密碼錯誤！請重新再試");
     });
 };
 
