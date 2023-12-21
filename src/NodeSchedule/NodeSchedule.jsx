@@ -107,7 +107,7 @@ const NodeSchedule = () => {
                   disabled={!isAllFilled}
                 >
                   {isClick ? (
-                    <CircularProgress color="inherit" sx={{ width: "5px" }} />
+                    <CircularProgress color="inherit" size="1rem" />
                   ) : (
                     "儲存"
                   )}
