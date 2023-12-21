@@ -66,7 +66,7 @@ function Forgot() {
             <Button
               sx={{ marginTop: "18px" }}
               variant="contained"
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/login")}
               disableElevation
             >
               回登入頁面

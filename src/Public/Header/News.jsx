@@ -25,7 +25,7 @@ const images = [
     link: "https://www.businesstoday.com.tw/article/category/183031/post/202305150033/",
     link_Mobile:
       "https://www.google.com/search?q=%E5%8F%B0%E7%81%A3%E7%BE%8E%E6%99%AF&tbm=isch&ved=2ahUKEwjQl4-BsKCDAxV7mFYBHb91AjkQ2-cCegQIABAA&oq=%E5%8F%B0%E7%81%A3%E7%BE%8E%E6%99%AF&gs_lcp=CgNpbWcQAzIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIHCAAQgAQQGDIHCAAQgAQQGDIHCAAQgAQQGDIHCAAQgAQQGDoECCMQJzoICAAQgAQQsQNQuBJYiC1gqi9oAHAAeACAAZwBiAH1CZIBBDExLjOYAQCgAQGqAQtnd3Mtd2l6LWltZ8ABAQ&sclient=img&ei=rhqEZdCIKfuw2roPv-uJyAM&bih=959&biw=1920&rlz=1C5CHFA_enTW993TW993#imgrc=vKvaMImLAkLsUM",
-    imgPath: require("../Images/new/news3_Mobile.jpg"),
+    imgPath: require("../Images/new/news3.jpg"),
     imgPath_Mobile: require("../Images/new/news3_Mobile.jpg"),
   },
 ];
