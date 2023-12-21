@@ -54,13 +54,11 @@ const PostContainer = ({
             justifyContent: "space-around",
           }}
         >
-          {docID === "" || isAtHome || (
-            <Share schedule={schedule} docID={docID[i]} />
-          )}
           <Post
             docID={docID[i]}
             userInfo={userInfo[i]}
             isHide={isHide}
+            isAtHome={isAtHome}
             schedule={schedule}
             canAdjust={canAdjust}
           />

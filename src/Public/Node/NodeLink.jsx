@@ -3,11 +3,13 @@ import Node from "./Node";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const NodeLink = ({ schedule, canAdjust }) => {
   const { begin, end, finalNodes } = schedule;
   const len = parseInt(finalNodes.length + 2);
   const nodesArray = Array.from({ length: len }, (_, index) => index);
+  const isMobile = useMediaQuery("(max-width:600px)");
 
   return (
     <Box
@@ -16,7 +18,7 @@ const NodeLink = ({ schedule, canAdjust }) => {
         display: "flex",
         alignItems: "center",
         overflowY: "auto",
-        marginY: "30px",
+        margin: isMobile ? "10px 0 20px 0" : "30px",
         padding: "8px",
       }}
     >

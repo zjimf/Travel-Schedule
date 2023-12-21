@@ -9,8 +9,9 @@ import { GetUID } from "../Database/GetUID";
 import { GetUserInfo } from "../Database/GetUserInfo";
 import Collapse from "@mui/material/Collapse";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import Share from "./Share";
 
-const Post = ({ userInfo, docID, isHide, schedule, canAdjust }) => {
+const Post = ({ userInfo, docID, isHide, isAtHome, schedule, canAdjust }) => {
   const [isHideCommentContainer, setIsHideCommentContainer] = useState(true);
   const [currentUser, setCurrentUser] = useState({});
 
@@ -32,8 +33,10 @@ const Post = ({ userInfo, docID, isHide, schedule, canAdjust }) => {
         flexDirection: "column",
         width: "100%",
         flexWrap: "true",
+        position: "relative",
       }}
     >
+      {docID === "" || isAtHome || <Share schedule={schedule} docID={docID} />}
       <Box
         sx={{
           display: "flex",
