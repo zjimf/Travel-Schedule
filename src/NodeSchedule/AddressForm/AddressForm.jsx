@@ -37,7 +37,12 @@ const AddressForm = ({
         ? setEndIsValid(true)
         : setEndIsValid(false);
 
-    begin !== null && end !== null && nodeNum !== null && isValid
+    begin !== null &&
+    end !== null &&
+    nodeNum !== null &&
+    isValid &&
+    beginIsValid &&
+    endIsValid
       ? setIsAllFilled(true)
       : setIsAllFilled(false);
   }, [begin, end, nodeNum, isValid]);
