@@ -7,8 +7,13 @@ const HandleLogInSubmit = async (event, setError, navigateRef) => {
   const auth = await getAuth();
   signInWithEmailAndPassword(auth, data.get("email"), data.get("password"))
     .then(async (userCredential) => {
-      sessionStorage.setItem("isLogin", true);
-      navigateRef.current("/");
+      const user = userCredential.user;
+      if (user.emailVerified) {
+        sessionStorage.setItem("isLogin", true);
+        navigateRef.current("/");
+      } else {
+        setError("請驗證您的電子郵件地址以登錄。");
+      }
     })
     .catch((error) => {
       setError("帳號或密碼錯誤！請重新再試");

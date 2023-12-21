@@ -27,6 +27,9 @@ const Home = () => {
     }
     getSchedule();
   }, []);
+  useEffect(() => {
+    console.log(userIsLogIn);
+  }, [userIsLogIn]);
 
   return (
     <main style={{ backgroundColor: "#f3f4f9" }}>

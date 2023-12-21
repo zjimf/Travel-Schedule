@@ -12,6 +12,7 @@ import Collapse from "@mui/material/Collapse";
 const Post = ({ userInfo, docID, isHide, schedule, canAdjust }) => {
   const [isHideCommentContainer, setIsHideCommentContainer] = useState(true);
   const [currentUser, setCurrentUser] = useState({});
+
   useEffect(() => {
     async function getCurrentUser() {
       const uid = await GetUID();
@@ -40,9 +41,7 @@ const Post = ({ userInfo, docID, isHide, schedule, canAdjust }) => {
       >
         <PostInfo userInfo={userInfo} />
         <NodeLink nodeNum={5} schedule={schedule} canAdjust={canAdjust} />
-        {isHide ? (
-          ""
-        ) : (
+        {isHide || (
           <LikeAndCommentContainer
             schedule={schedule}
             docID={docID}
@@ -51,14 +50,15 @@ const Post = ({ userInfo, docID, isHide, schedule, canAdjust }) => {
           />
         )}
       </Box>
-
-      <Collapse in={!isHideCommentContainer}>
-        <CommentContainer
-          userInfo={currentUser}
-          docID={docID}
-          schedule={schedule}
-        />
-      </Collapse>
+      {isHide || (
+        <Collapse in={!isHideCommentContainer}>
+          <CommentContainer
+            userInfo={currentUser}
+            docID={docID}
+            schedule={schedule}
+          />
+        </Collapse>
+      )}
     </Card>
   );
 };
