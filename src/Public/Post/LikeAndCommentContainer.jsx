@@ -5,6 +5,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ArticleIcon from "@mui/icons-material/Article";
 import { toggleLike } from "../Database/toggleLike.js";
 import { GetUID } from "../Database/GetUID.js";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const iconStyle = {
   fontSize: "30px",
@@ -21,6 +22,7 @@ const LikeAndCommentContainer = ({
 }) => {
   const [likes, setLikes] = useState(schedule.likes.length);
   const [isLike, setIsLike] = useState(false);
+  const isMobile = useMediaQuery("(max-width:600px)");
 
   const handleLike = () => {
     async function handleLikeEve() {
@@ -49,14 +51,16 @@ const LikeAndCommentContainer = ({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        borderLeft: "1px solid #d8d8d8",
+        borderLeft: isMobile || "1px solid #d8d8d8",
       }}
     >
       <Box
         sx={{
           height: "100%",
+          width: isMobile ? "100%" : "",
+          margin: isMobile ? "0 30px 10px 0" : "",
           display: "flex",
-          flexDirection: "column",
+          flexDirection: isMobile ? "row" : "column", // 根據螢幕寬度動態調整排列方向
           alignItems: "center",
           justifyContent: "space-around",
         }}

@@ -50,18 +50,17 @@ const News = () => {
         {images.map((step, index) => (
           <div key={step.label}>
             {Math.abs(activeStep - index) <= 2 ? (
-              <>
-                <Box
-                  component="img"
-                  sx={{
-                    height: "100%",
-                    width: "100%",
-                    objectFit: "cover",
-                    marginTop: "-50px",
-                  }}
-                  src={step.imgPath}
-                />
-              </>
+              <Box
+                key={step.index}
+                component="img"
+                sx={{
+                  height: "100%",
+                  width: "100%",
+                  objectFit: "cover",
+                  marginTop: "-50px",
+                }}
+                src={step.imgPath}
+              />
             ) : null}
           </div>
         ))}

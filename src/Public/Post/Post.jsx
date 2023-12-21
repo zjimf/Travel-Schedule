@@ -8,10 +8,13 @@ import CommentContainer from "../Comments/CommentContainer.jsx";
 import { GetUID } from "../Database/GetUID";
 import { GetUserInfo } from "../Database/GetUserInfo";
 import Collapse from "@mui/material/Collapse";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Post = ({ userInfo, docID, isHide, schedule, canAdjust }) => {
   const [isHideCommentContainer, setIsHideCommentContainer] = useState(true);
   const [currentUser, setCurrentUser] = useState({});
+
+  const isMobile = useMediaQuery("(max-width:600px)");
 
   useEffect(() => {
     async function getCurrentUser() {
@@ -35,7 +38,7 @@ const Post = ({ userInfo, docID, isHide, schedule, canAdjust }) => {
         sx={{
           display: "flex",
           paddingLeft: "30px",
-          flexDirection: "row",
+          flexDirection: isMobile ? "column" : "row", // 根據螢幕寬度動態調整排列方向
           borderBottom: "1px solid #d8d8d8",
         }}
       >

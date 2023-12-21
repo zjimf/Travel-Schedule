@@ -3,7 +3,6 @@ import Node from "./Node";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import Zoom from "@mui/material/Zoom";
 
 const NodeLink = ({ schedule, canAdjust }) => {
   const { begin, end, finalNodes } = schedule;
@@ -33,7 +32,7 @@ const NodeLink = ({ schedule, canAdjust }) => {
           {nodesArray.map((index) => (
             <>
               <Node
-                key={index}
+                key={index + 5}
                 index={index}
                 len={len}
                 begin={begin}
@@ -43,7 +42,7 @@ const NodeLink = ({ schedule, canAdjust }) => {
                 delay={index * 300}
               />
               {index === len - 1 || (
-                <KeyboardArrowRightIcon sx={{ marginX: "10px" }} />
+                <KeyboardArrowRightIcon sx={{ marginX: "10px" }} key={index} />
               )}
             </>
           ))}
