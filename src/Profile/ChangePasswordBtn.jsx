@@ -103,7 +103,17 @@ const ChangePasswordBtn = () => {
               type="password"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
-              error={error}
+              error={
+                ((newPassword.length > 20 || newPassword.length < 6) &&
+                  newPassword !== "") ||
+                error
+              }
+              helperText={
+                (newPassword.length > 20 || newPassword.length < 6) &&
+                newPassword !== ""
+                  ? "密碼需包含6到20個字元"
+                  : ""
+              }
             />
             <TextField
               id="confirm-password"
