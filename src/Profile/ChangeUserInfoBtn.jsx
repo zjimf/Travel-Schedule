@@ -40,7 +40,8 @@ const ChangeUserInfoBtn = ({ userInfo }) => {
   };
 
   useEffect(() => {
-    currentName === "" ? setBlock(true) : setBlock(false);
+    const isInvalid = currentName === "" || currentName.length > 10;
+    setBlock(isInvalid);
   }, [currentName]);
 
   return (
@@ -74,12 +75,19 @@ const ChangeUserInfoBtn = ({ userInfo }) => {
             />
             <TextField
               id="outlined-basic"
-              value={currentName}
+              label="暱稱"
               variant="outlined"
+              value={currentName}
+              onChange={(e) => setCurrentName(e.target.value)}
+              error={currentName.length > 10 || currentName === ""}
+              helperText={
+                currentName.length > 10
+                  ? "暱稱不能超過10個字"
+                  : currentName === ""
+                  ? "暱稱不能為空"
+                  : ""
+              }
               sx={{ marginTop: "30px" }}
-              onChange={(e) => {
-                setCurrentName(e.target.value);
-              }}
             />
           </Box>
         </DialogContent>

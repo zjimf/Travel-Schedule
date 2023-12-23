@@ -30,7 +30,8 @@ function SignUp() {
     return re.test(email);
   };
 
-  const canSubmit = name && validateEmail(email) && password.length >= 6;
+  const canSubmit =
+    name && validateEmail(email) && password.length >= 6 && name.length <= 10;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -80,7 +81,9 @@ function SignUp() {
                 name="name"
                 fullWidth
                 id="name"
-                label="姓名"
+                label="暱稱"
+                error={name.length > 10}
+                helperText={name.length > 10 ? "暱稱不得超過10個字" : ""}
                 onChange={(e) => setName(e.target.value)}
               />
             </Grid>
@@ -112,10 +115,14 @@ function SignUp() {
                 autoComplete="new-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                error={password.length < 6 && password !== ""}
+                error={
+                  (password.length > 20 || password.length < 6) &&
+                  password !== ""
+                }
                 helperText={
-                  password.length < 6 && password !== ""
-                    ? "密碼至少需要6個字元"
+                  (password.length > 20 || password.length < 6) &&
+                  password !== ""
+                    ? "密碼需包含6到20個字元"
                     : ""
                 }
               />

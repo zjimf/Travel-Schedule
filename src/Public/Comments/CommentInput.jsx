@@ -58,7 +58,7 @@ const CommentInput = ({ userInfo, docID, schedule, setComments }) => {
           endAdornment: (
             <InputAdornment>
               {sending ? (
-                <CircularProgress />
+                <CircularProgress size="2rem" />
               ) : (
                 <SendIcon
                   disabled={!canClick}

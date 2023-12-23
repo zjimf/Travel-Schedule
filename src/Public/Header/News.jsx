@@ -96,7 +96,7 @@ const News = () => {
           onClick={() =>
             handleBoxClick(
               isMobile
-                ? images[activeStep].imgPath_Mobile
+                ? images[activeStep].link_Mobile
                 : images[activeStep].link
             )
           }

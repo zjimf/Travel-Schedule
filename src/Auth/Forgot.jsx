@@ -69,7 +69,7 @@ function Forgot() {
               onClick={() => navigate("/login")}
               disableElevation
             >
-              回登入頁面
+              回到首頁
             </Button>
           </>
         )}

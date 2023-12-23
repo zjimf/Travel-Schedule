@@ -22,7 +22,12 @@ const PostInfo = ({ userInfo }) => {
         }
       ></Avatar>
       <Typography
-        sx={{ fontSize: 20, whiteSpace: "normal", fontWeight: "bold" }}
+        sx={{
+          fontSize: 20,
+          whiteSpace: "normal",
+          fontWeight: "bold",
+          width: "100px",
+        }}
       >
         {userInfo.name}
       </Typography>
