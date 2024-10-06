@@ -59,15 +59,15 @@ npm start
 
 ### ER-diagram
 
-![](./Images/er.png)
+![](./images/er.png)
 
 ### Swimlane-diagram
 
-![](./Images/swimlane-diagram.png)
+![](./images/swimlane-diagram.png)
 
 ### MVC
 
-![](./Images/mvc.png)
+![](./images/mvc.png)
 
 ## 測試計畫
 
