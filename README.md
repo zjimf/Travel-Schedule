@@ -1,70 +1,99 @@
-# Getting Started with Create React App
+### Getting Started with Travel-Schedule
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> [!NOTE]  
+> Sorry, the Google map API used in this project has been closed, so the scheduling function is temporarily unavailable.
 
-## Available Scripts
+```
+# Download Library
+npm install
 
-In the project directory, you can run:
+# in ./Travel-Schedule
+npm start
 
-### `npm start`
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Travel-Schedule - 專案文件
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 專案簡介
 
-### `npm test`
+本專案旨在為台灣的旅遊愛好者提供一個便捷的平台，讓使用者能夠輕鬆地瀏覽、計畫並分享旅遊行程。平台還會根據使用者的個人偏好和需求，推薦獨特的景點和行程。
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 專案目標
 
-### `npm run build`
+1. 協助使用者規劃旅遊行程。
+2. 提供分享和瀏覽行程文章的功能。
+3. 支援會員帳號功能，包括註冊、登入、密碼重設等。
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 核心功能
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **最新消息**：顯示服務的最新更新與通知。
+2. **會員登入/註冊**：提供會員登入與註冊的功能介面。
+3. **行程規劃**：使用者可以規劃起點、終點及中途景點的行程。
+4. **行程文章**：使用者可以瀏覽與分享旅遊行程，並針對行程進行喜好與留言操作。
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 架構與技術
 
-### `npm run eject`
+### 技術需求
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **前端框架**：React.js
+- **後端伺服器**：Node.js
+- **套件管理**：npm
+- **UI 框架**：Material UI
+- **資料庫**：Firebase Firestore
+- **地圖服務**：Google Maps API
+- **版本控制**：Git
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 系統架構
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. **MVC 架構**：採用 MVC 設計模式，將應用程式劃分為 Model、View 和 Controller 三個主要部分，並使用單向數據流進行數據管理。
+2. **資料層 (Data Layer)**：負責處理與 Firebase Firestore 的資料交互。
+3. **邏輯層 (Business Logic Layer)**：負責核心業務邏輯與數據處理。
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 系統功能介紹
 
-## Learn More
+### 使用案例
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **登入功能**：使用者可透過電子郵件與密碼或 Google 帳號登入。
+- **行程規劃功能**：使用者可以根據 Google Maps API 規劃行程，選擇起點、終點及節點數量，並調整行程順序。
+- **行程文章管理**：使用者可分享並瀏覽行程文章，對文章進行喜好及留言。
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### ER-diagram
 
-### Code Splitting
+![](./Images/er.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Swimlane-diagram
 
-### Analyzing the Bundle Size
+![](./Images/swimlane-diagram.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### MVC
 
-### Making a Progressive Web App
+![](./Images/mvc.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 測試計畫
 
-### Advanced Configuration
+### 單元測試
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+採用「灰箱測試」方法，針對核心功能進行單元測試，包括會員註冊、忘記密碼、登入、行程規劃等功能模組。主要測試項目包括：
 
-### Deployment
+1. **會員註冊測試**：測試使用者註冊功能是否正常運作。
+2. **忘記密碼測試**：測試是否可以成功發送重設密碼的信件。
+3. **登入功能測試**：測試會員的登入流程與正確性。
+4. **行程規劃測試**：測試節點安排、起點終點輸入與節點調整功能。
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### 整合測試
 
-### `npm run build` fails to minify
+進行整合測試，確保各功能模組之間的協同運作。測試項目包括：
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. **非會員測試**：測試未註冊使用者的操作限制。
+2. **會員功能測試**：測試會員註冊、登入、忘記密碼及登出功能的整合性。
+3. **行程分享與留言測試**：測試行程分享與留言功能。
+
+## 測試結果
+
+- **會員註冊測試結果**：所有測試案例通過，會員可以正確註冊並收到確認信件。
+- **行程規劃測試結果**：測試結果顯示使用者可以順利安排節點並生成行程。
+- **行程文章測試結果**：使用者能夠正常發表、刪除文章，並對文章點讚。
+
+## 結論
+
+本專案透過整合最新的前後端技術，為使用者提供一個友善且功能豐富的台灣旅遊規劃平台，並確保系統的安全性、穩定性及使用者體驗。單元與整合測試結果顯示系統各項功能運作正常，能夠滿足使用者需求。
